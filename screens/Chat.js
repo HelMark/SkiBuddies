@@ -1,10 +1,10 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
-export default function Prices() {
+export default function Chat() {
     return (
         <View style = {{flex: 1, alignItems: "center", justifyContent: "center"}}>
-            <Text>Prices</Text>
+            <Text>Chat</Text>
         </View>
     )
 }

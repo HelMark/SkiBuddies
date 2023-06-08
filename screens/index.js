@@ -1,13 +1,13 @@
-import Home from "./Home";
-import Portfolio from "./Portfolio";
-import Settings from "./Settings";
-import Prices from "./Prices";
-import Transaction from "./Transaction";
+import Buddies from "./Buddies";
+import Weather from "./Weather";
+import Chat from "./Chat";
+import Profile from "./Profile";
+import Discover from "./Discover";
 
 export{
-    Home,
-    Portfolio,
-    Settings,
-    Prices,
-    Transaction,
+    Buddies,
+    Weather,
+    Chat,
+    Profile,
+    Discover,
 }

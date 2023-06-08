@@ -1,11 +1,11 @@
 import {Text, Platform, View} from "react-native";
-import {Home, Portfolio, Prices, Settings, Transaction} from "./screens";
+import {Buddies, Discover, Profile, Chat, Weather} from "./screens";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Entypo } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 
 const Tab = createBottomTabNavigator();
@@ -18,7 +18,7 @@ const screenOptions = {
     rigth: 0,
     left: 0,
     elevation: 0,
-    height: 75,
+    height: 90,
     background: "#fff"
   }
 }
@@ -28,36 +28,36 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen 
-        name="Home" 
-        component={Home}
+        name="Buddies" 
+        component={Buddies}
         options= {{
           tabBarIcon: ({focused}) => {
             return (
             <View style= {{alignItems: "center", justifyContent: "center"}}>
-              <Entypo name="home" size={24} color={focused ? "#16247d": "#111"} />
-              <Text style= {{fontSize: 12, color: "#16247d"}}>HOME</Text>
+              <FontAwesome5 name="skiing-nordic" size={30} color={focused ? "#0096FF": "#D3D3D3"} />
+              <Text style= {{fontSize: 13, color: "black"}}>BUDDIES</Text>
             </View>
             )
           }
           }} 
         />
         <Tab.Screen 
-        name="Portfolio" 
-        component={Portfolio}
+        name="Weather" 
+        component={Weather}
         options= {{
           tabBarIcon: ({focused}) => {
             return (
             <View style= {{alignItems: "center", justifyContent: "center"}}>
-              <Entypo name="wallet" size={24} color={focused ? "#16247d": "#111"} />
-              <Text style= {{fontSize: 12, color: "#16247d"}}>WALLET</Text>
+              <MaterialCommunityIcons name="snowflake-alert" size={30} color={focused ? "#0096FF": "#D3D3D3"} />
+              <Text style= {{fontSize: 13, color: "black"}}>WEATHER</Text>
             </View>
             )
           }
           }} 
          />
         <Tab.Screen 
-        name="Transaction" 
-        component={Transaction}
+        name="Discover" 
+        component={Discover}
           options = {{
             tabBarIcon: ({focused}) => {
               return (
@@ -65,41 +65,43 @@ export default function App() {
                 style= {{
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: "#16247d", 
-                  width: Platform.OS == "ios" ? 60 : 70,
-                  height: Platform.OS == "ios" ? 60 : 70,
+                  backgroundColor: "#FFFFFF",
+                  borderColor: "#0096FF",
+                  borderWidth: 3,
+                  width: Platform.OS == "ios" ? 70 : 80,
+                  height: Platform.OS == "ios" ? 70 : 80,
                   top: Platform.OS == "ios" ? -10 : -20,
-                  borderRadius: Platform.OS == "ios" ? 30 : 35
+                  borderRadius: Platform.OS == "ios" ? 35 : 40
                 }} >
-                  <FontAwesome name="exchange" size={24} color="#fff" />
+                  <FontAwesome5 name="mountain" size={30} color={focused ? "#0096FF": "#D3D3D3"} />
                 </View>
               )
             }
           }}
          />
         <Tab.Screen 
-        name="Prices" 
-        component={Prices} 
+        name="Profile" 
+        component={Profile} 
         options= {{
           tabBarIcon: ({focused}) => {
             return (
             <View style= {{alignItems: "center", justifyContent: "center"}}>
-              <MaterialIcons name="stacked-line-chart" size={24} color={focused ? "#16247d": "#111"} />
-              <Text style= {{fontSize: 12, color: "#16247d"}}>PRICES</Text>
+              <FontAwesome name="user-o" size={30} color={focused ? "#0096FF": "#D3D3D3"}/>
+              <Text style= {{fontSize: 13, color: "black"}}>PROFILE</Text>
             </View>
             )
           }
           }} 
         />
         <Tab.Screen 
-        name="Settings" 
-        component={Settings} 
+        name="Chat" 
+        component={Chat} 
         options= {{
           tabBarIcon: ({focused}) => {
             return (
             <View style= {{alignItems: "center", justifyContent: "center"}}>
-              <Ionicons name="settings" size={24} color={focused ? "#16247d": "#111"}  />
-              <Text style= {{fontSize: 12, color: "#16247d"}}>SETTINGS</Text>
+              <Entypo name="chat" size={30} color={focused ? "#0096FF": "#D3D3D3"} />
+              <Text style= {{fontSize: 13, color: "black"}}>CHAT</Text>
             </View>
             )
           }

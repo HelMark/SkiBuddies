@@ -1,10 +1,10 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
-export default function Setting() {
+export default function Weather() {
     return (
         <View style = {{flex: 1, alignItems: "center", justifyContent: "center"}}>
-            <Text>Settings</Text>
+            <Text>Weather</Text>
         </View>
-    )
+    );
 }
