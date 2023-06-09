@@ -27,7 +27,7 @@ const SearchBar = ({onSearch}) => {
     };
 
     return (
-        <View style= {{width: 400}}>
+        <View style= {{width: "100%"}}>
             <TextInput 
             style={inputStyles}
             placeholder= "Search for weather reports for your destination... "
