@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, TextInput, Button} from 'react-native';
 
-const SearchBar = ({onSearch}) => {
+const SearchBar = ({onSearch, placeholder}) => {
     const [searchText, setSearchText] = useState('');
     const [isFocused, setIsFocused] = useState(false);
 
@@ -30,7 +30,7 @@ const SearchBar = ({onSearch}) => {
         <View style= {{width: "100%"}}>
             <TextInput 
             style={inputStyles}
-            placeholder= "Search for weather reports for your destination... "
+            placeholder= {placeholder}
             value={searchText}
             onChangeText= {text => setSearchText(text)}
             onFocus = {handleFocus}

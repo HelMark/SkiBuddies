@@ -7,7 +7,7 @@ export default function Weather() {
     const [selectedRegion, setSelectedRegion] = useState(null);
 
     const handleSearch = searchText => {
-        //Logic for searchfunction
+        //Logic for handling searched destination
     };
 
     const handleRegionPress = region => {
@@ -20,14 +20,14 @@ export default function Weather() {
 
     return (
             <View style={{flex:1}}>
-                <SearchBar onSearch= {handleSearch} />
+                <SearchBar onSearch= {handleSearch} placeholder= "Search for weather reports for your destination... " />
                 <RegionSelector onRegionPress = {handleRegionPress} />
                 <Modal visible={selectedRegion !== null} animationType="slide">
                     <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
-                        <Text style={{fontSize: 18, marginBottom: 20}}>
-                            Weather Reports from {selectedRegion}
+                        <Text style={{fontSize: 18, marginBottom: 20, top:-300, left:20}}>
+                            Weather for {selectedRegion}
                         </Text>
-                        <TouchableOpacity onPress={handleCloseModal} style={{padding: 10, backgroundColor: 'lightgray'}}>
+                        <TouchableOpacity onPress={handleCloseModal} style={{padding: 10, backgroundColor: 'lightgray', top:-350, left:-150}}>
                             <Text>Close</Text>
                         </TouchableOpacity>
                     </View>
