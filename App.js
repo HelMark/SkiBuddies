@@ -1,5 +1,5 @@
 import {Text, Platform, View} from "react-native";
-import {Buddies, Discover, Profile, Chat, Weather} from "./screens";
+import {Buddies, Discover, Profile, Chat, Weather } from "./screens";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from '@expo/vector-icons'; 

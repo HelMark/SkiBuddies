@@ -1,8 +1,10 @@
-import {View, Modal, TouchableOpacity, StyleSheet, Text} from 'react-native';
+import {View, Modal, TouchableOpacity, Dimensions } from 'react-native';
 import React, {useState} from 'react';
 import SearchBar from '../components/SearchBar';
 import NewPost from '../components/NewPost';
 import { Ionicons } from '@expo/vector-icons';
+
+const windowWidth = Dimensions.get('window').width;
 
 export default function Discover() {
     const[newPost, setNewPost] = useState(null);
@@ -26,7 +28,7 @@ export default function Discover() {
         <View style = {{flex: 1}}>
             <SearchBar onSearch= {handleSearch} placeholder = "Search for your destination..." />
             <TouchableOpacity onPress={() => setShowModal(true)} >
-            <Ionicons name="ios-add-circle-outline" size={90} color="#0096FF" style={{alignSelf:"center", position: "absolute", top:470}} />
+            <Ionicons name="ios-add-circle-outline" size={90} color="#0096FF" style={{alignSelf:"center", position: "absolute", top: windowWidth*1.22}} />
             </TouchableOpacity>
             <Modal visible={showModal} onRequestClose={handleCloseModal}>
             <NewPost onClose={handleCloseModal}/>
