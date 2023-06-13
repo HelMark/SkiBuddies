@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Text, Pressable, KeyboardAvoidingView, TextInput, StyleSheet, View, TouchableHighlight, TouchableOpacity, FlatList } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
-export default function NewPost({ onClose}) {
+export default function NewPost({ onClose, onNewPost}) {
     //Frontend const
     const [isPressed, setIsPressed] = useState(false);
     const addButtonStyle = isPressed ? [styles.addButton, styles.addButtonPressed] : styles.addButton;
