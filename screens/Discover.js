@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 const windowWidth = Dimensions.get('window').width;
 
 const DiscoverScreen = () => {
-    const [images, setImages] = useState([
+    const [images, setImages] = useState([ //Dummie values
         {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SourceCode/SkiBuddies/Bilder/bilde1.jpg")},
         {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SourceCode/SkiBuddies/Bilder/bilde3.jpg")}, //Denne funker ikke må bytes ut
         {id: 3, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SourceCode/SkiBuddies/Bilder/bilde4.jpeg")},
