@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button} from 'react-native';
+import { View, TextInput,} from 'react-native';
 
 const SearchBar = ({onSearch, placeholder}) => {
     const [searchText, setSearchText] = useState('');
@@ -17,13 +17,17 @@ const SearchBar = ({onSearch, placeholder}) => {
     const handleBlur = () => {
         setIsFocused(false);
     }
-
-    const inputStyles ={
+    const handleKeyPress = (event) => {
+        if(event.nativeEvent.key === "Enter") {
+            handleSearch();
+        }
+    }
+    const inputStyles = {
         height: 40,
         borderWidth: 3,
         borderRadius: 10,
         paddingHorizontal: 10,
-        borderColor: isFocused ? "#0096FF" : "#D3D3D3"
+        borderColor: isFocused ? "#0096FF" : "#D3D3D3",
     };
 
     return (
@@ -35,8 +39,9 @@ const SearchBar = ({onSearch, placeholder}) => {
             onChangeText= {text => setSearchText(text)}
             onFocus = {handleFocus}
             onBlur = {handleBlur}
+            onSubmitEditing={handleSearch}
+            onKeyPress={handleKeyPress}
             /> 
-            <Button title="Search" onPress={handleSearch} />
         </View>
     );
 };

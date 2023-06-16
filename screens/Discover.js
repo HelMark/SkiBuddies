@@ -46,7 +46,7 @@ const panResponder = PanResponder.create({
 
 return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={handleSwipeUp} style={{zIndex: 1,top : windowWidth*1.26, left: 240, position: "absolute"}}>
+        <TouchableOpacity onPress={handleSwipeUp} style={{zIndex: 1,top : windowWidth*1.32, left: 240, position: "absolute"}}>
         <Ionicons name="refresh-circle-outline" size={60} color="#0096FF" style={{alignSelf: "center", zIndex:1,}} />
         </TouchableOpacity>
         <Animated.View style={{transform : [{translateY: swipeUpGesture}]}}>
@@ -84,7 +84,7 @@ const Discover = () => {
                 name = "ios-add-circle-outline"
                 size={90}
                 color="#0096FF"
-                style = {{alignSelf: "center", position: "absolute", top: windowWidth*1.22, left:150}}/>
+                style = {{alignSelf: "center", position: "absolute", top: windowWidth*1.28, left:150}}/>
             </TouchableOpacity>
       
             <Modal visible={showModal} onRequestClose={handleCloseModal}>
@@ -100,7 +100,8 @@ const Discover = () => {
 
 const styles = StyleSheet.create ({
     container: {
-        flex: 1
+        flex: 1,
+        paddingTop: 5
     },
     gridContainer : {
         flexDirection: "row",
@@ -110,7 +111,7 @@ const styles = StyleSheet.create ({
     },
     image : {
         width: windowWidth/3.1,
-        height: windowWidth/2.65,
+        height: windowWidth/2.50,
         margin: 1
     },
     modalContainer: {

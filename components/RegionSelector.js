@@ -7,7 +7,7 @@ export default function RegionSelector({ onRegionPress }) {
     };
 
     return (
-        <View style={{position: 'relative'}}>
+        <View style={{position: 'relative', paddingTop: 10}}>
             <Image
             source={require ('/Users/sigurdhagen/Documents/SkiBuddies/SourceCode/SkiBuddies/Bilder/norge.jpeg')}
             style = {{
@@ -17,7 +17,8 @@ export default function RegionSelector({ onRegionPress }) {
                 alignItems: "center", 
                 borderWidth: 3, 
                 borderColor: "#D3D3D3", 
-                borderRadius: 10}}
+                borderRadius: 10,
+            }}
             />
             <View style ={{position: 'absolute', bottom:0}}>
             <TouchableOpacity
