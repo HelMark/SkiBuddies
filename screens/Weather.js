@@ -1,5 +1,5 @@
 import {View, Text, Modal, TouchableOpacity } from 'react-native';
-import SearchBar from "/Users/sigurdhagen/Documents/SkiBuddies/SourceCode/SkiBuddies/components/SearchBar.js";
+import SearchBar from "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/components/SearchBar.js";
 import RegionSelector from '../components/RegionSelector';
 import React, { useState } from 'react';
 
