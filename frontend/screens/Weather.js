@@ -1,6 +1,6 @@
 import {View, Text, Modal, TouchableOpacity } from 'react-native';
-import SearchBar from "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/components/SearchBar.js";
-import RegionSelector from '../components/RegionSelector';
+import SearchBar from "../components/SearchBar.js";
+import RegionSelector from '../components/RegionSelector.js';
 import React, { useState } from 'react';
 
 export default function Weather() {

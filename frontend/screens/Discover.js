@@ -9,18 +9,18 @@ const windowWidth = Dimensions.get('window').width;
 
 const DiscoverScreen = () => {
     const [images, setImages] = useState([ //Dummie values
-        {id: 1, source: require("/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde1.jpg")},
-        {id: 2, source: require("/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde3.jpg")}, //Denne funker ikke må bytes ut
-        {id: 3, source: require("/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde4.jpeg")},
-        {id: 4, source: require("/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde5.jpeg")},
-        {id: 5, source: require( "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde6.jpeg")},
-        {id: 6, source: require( "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde7.jpeg")},
-        {id: 7, source: require("/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde8.jpeg")},
-        {id: 8, source: require("/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde9.jpeg")},
-        {id: 9, source: require( "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde10.jpeg")},
-        {id: 10, source: require( "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde11.jpeg")},
-        {id: 11, source: require( "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde12.jpeg")},
-        {id: 12, source: require( "/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde13.jpeg")},
+        {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg")},
+        {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde3.jpg")},
+        {id: 3, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg")},
+        {id: 4, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde5.jpeg")},
+        {id: 5, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde6.jpeg")},
+        {id: 6, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde7.jpeg")},
+        {id: 7, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde8.jpeg")},
+        {id: 8, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde9.jpeg")},
+        {id: 9, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde10.jpeg")},
+        {id: 10, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde11.jpeg")},
+        {id: 11, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde12.jpeg")},
+        {id: 12, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde13.jpeg")},
     ]);
 
     const[swipeUpGesture] = useState(new Animated.Value(0));
