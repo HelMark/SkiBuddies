@@ -9,7 +9,7 @@ export default function RegionSelector({ onRegionPress }) {
     return (
         <View style={{position: 'relative', paddingTop: 10}}>
             <Image
-            source={require ('/Users/sigurdhagen/Documents/SkiBuddies/SourceCode/SkiBuddies/Bilder/norge.jpeg')}
+            source={require ('/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/norge.jpeg')}
             style = {{
                 width: '100%', 
                 height: '80%', 

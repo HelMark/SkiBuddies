@@ -18,7 +18,7 @@ const ProfileScreen = () => {
         <View style={styles.container}>
             <View style={styles.profileHeader}>
                 <Image 
-                source={require("/Users/sigurdhagen/Documents/SkiBuddies/SourceCode/SkiBuddies/Bilder/bilde4.jpeg")}
+                source={require("/Users/markus/Desktop/Prosjekt/SkiBuddies/SkiBuddies/Bilder/bilde4.jpeg")}
                 style={styles.profileImage}/>
                 <View style={styles.BuddiesCountContainer}>
                     <Text style={styles.BuddiesCount}>123</Text> 
