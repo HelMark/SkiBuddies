@@ -1,18 +1,45 @@
-import {View, Image, Pressable, StyleSheet, Text} from 'react-native';
-import React, {useState} from 'react';
+import {View, Image, Pressable, StyleSheet, Text, ScrollView, Modal} from 'react-native';
+import React, {useState, useRef} from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import EditProfile from '../components/EditProfile'
 
 const ProfileScreen = () => {
-    const [selectedMenuItem, setSelectedMenuItem] = useState("MyPosts");
+    const [selectedMenuItem, setSelectedMenuItem] = useState("myPosts");
+
+    const [MyImages, setMyImages] = useState([ //Dummie values 
+    {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg")},
+    {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde3.jpg")},
+    {id: 3, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg") }
+    ])
+
+    const [savedImages, setSavedImages] = useState([ //Dummie values
+    {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde5.jpeg")},
+    {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde7.jpeg")},
+    {id: 3 , source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde8.jpeg")}
+    ])
 
     const handleMenuPress = (menuItem) => {
         setSelectedMenuItem(menuItem);
+        if(scrollViewRef.current) {
+            scrollViewRef.current.scrollTo({y:0, animated: true});
+        }
+    };
+    const handleEditProfilePress = (editProfile) => {
+        setEditProfile(true);
+        setShowModal(true);
+    }
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setEditProfile(false);
     };
 
-    const handleEditProfile = () => {
-        //TODO: add open edit profile screen
-    };
+    const scrollViewRef = useRef(null);
+
+    const [showModal, setShowModal] = useState(false);
+    const [editProfile, setEditProfile] = useState(false);
+
+
 
     return (
         <View style={styles.container}>
@@ -26,29 +53,53 @@ const ProfileScreen = () => {
                 </View>
             </View>
 
-            <Pressable style={styles.editProfileButton} onPress={handleEditProfile}>
+            <Pressable style={styles.editProfileButton} onPress={handleEditProfilePress}>
                 <Text style={styles.editProfileButtonText}>Edit Profile</Text>
             </Pressable>
+            <Modal visible={showModal} onRequestClose={handleCloseModal}>
+                <View style={styles.modalContainer}>
+                    <EditProfile onClose={handleCloseModal}/>
+                </View>
+            </Modal>
 
             <View style={styles.menu}>
                 <Pressable 
                 style={[
-                styles.menuItem,
-                selectedMenuItem === "myPosts" && styles.selectedMenuItem]}
+                styles.menuItem, selectedMenuItem === "myPosts" && styles.selectedMenuItem]}
                 onPress={() => handleMenuPress("myPosts")}>
-                    <FontAwesome name="picture-o" size={35} style={[styles.menuItemIcon, selectedMenuItem === "myPosts" && styles.selectedMenuItemIcon]} />
+                    <FontAwesome 
+                    name="picture-o" 
+                    size={35} 
+                    style={[styles.menuItemIcon, selectedMenuItem === "myPosts" && styles.selectedMenuItemIcon]}/>
                 </Pressable>
                 <Pressable
-                style={[
-                    styles.menuItem,
-                    selectedMenuItem === "savedPosts" && styles.selectedMenuItem]}
+                style={[styles.menuItem, selectedMenuItem === "savedPosts" && styles.selectedMenuItem]}
                     onPress={() => handleMenuPress("savedPosts")}>
-                    <MaterialIcons name="save-alt" size={35} style={[styles.menuItemIcon ,selectedMenuItem == "savedPosts" && styles.selectedMenuItemIcon]}/>
+                    <MaterialIcons 
+                    name="save-alt" 
+                    size={35} 
+                    style={[styles.menuItemIcon ,selectedMenuItem == "savedPosts" && styles.selectedMenuItemIcon]}/>
                 </Pressable>
             </View>
+            <ScrollView ref={scrollViewRef}>
+                {selectedMenuItem == "myPosts" && (
+                    <View style={styles.imageGrid}>
+                        {MyImages.map((image) => (
+                            <Image key={image.id} source={image.source} style={styles.gridImage}/>
+                        ))}
+                    </View>
+                )}
+                {selectedMenuItem === "savedPosts" && (
+                    <View style={styles.imageGrid}>
+                        {savedImages.map((image)=> (
+                            <Image key={image.id} source={image.source} style={styles.gridImage}/>
+                        ))}
+                    </View>
+                )}
+            </ScrollView>
         </View>
-        )
-}
+        );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -119,7 +170,22 @@ const styles = StyleSheet.create({
     }, 
     selectedMenuItemIcon: {
         color: "#0096FF",
-    }
+    },
+    imageGrid: {
+        marginTop: 10,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-between"
+    },
+    gridImage: {
+        width: "32%",
+        height: 150,
+        marginBottom: 10,
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: "white"
+      }
 })    
 
 export default ProfileScreen;

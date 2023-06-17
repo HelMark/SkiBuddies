@@ -62,7 +62,7 @@ export default function NewPost({ onClose, onNewPost}) {
         <KeyboardAvoidingView style={styles.container} behavior="padding">
           <View style={styles.header}>
             <Pressable onPress={handlePressClose}>
-              <Ionicons name="md-arrow-back-sharp" size={50} color="#D3D3D3" style={styles.backButton} />
+              <Ionicons name="md-arrow-back-sharp" size={50} color="#D3D3D3" style={styles.backButton}/>
             </Pressable>
             <Text style={styles.title}>New Post</Text>
             <View style={{ width: 40 }}></View>
