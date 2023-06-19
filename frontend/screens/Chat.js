@@ -1,7 +1,8 @@
-import {ScrollView, View, TouchableOpacity, StyleSheet, Text} from 'react-native';
+import {ScrollView, View, TouchableOpacity, StyleSheet, Text, Pressable, Modal} from 'react-native';
 import React, {useState} from 'react';
 import SearchBar from '../components/SearchBar';
 import { MaterialIcons } from '@expo/vector-icons';
+import NewGroupComponent from '../components/NewGroup';
 
 export default function Chat() {
 
@@ -19,18 +20,22 @@ export default function Chat() {
         //Logic for navigating into a chat
     };
 
-    const handleNewGroupPress = () => {
-        //Logic for creating a new group
+    const handleCloseModal = () => {
+        setNewGroup(false);
+        setShowModal(false);
     };
+
+    const [showModal, setShowModal] = useState(false);
+    const [NewGroup, setNewGroup] = useState(false);
 
     return (
         <View style={styles.container}>
             <SearchBar onSearch={handleSearch} placeholder= "Search for a profile..."/>
             <View style={styles.header}>
                 <Text style={styles.title}>Conversations</Text>
-                <TouchableOpacity onPress={handleNewGroupPress}>
-                <MaterialIcons name="group-add" size={40} style={styles.button} />
-                </TouchableOpacity>
+                <Pressable onPress={() => setShowModal(true)}>
+                    <MaterialIcons name="group-add" size={40} color="#0096FF" style={styles.button} />
+                </Pressable>
             </View>
             <ScrollView style={styles.conversationContainer}>
                 {conversations.map((conversation) => (
@@ -42,6 +47,11 @@ export default function Chat() {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
+            <Modal visible={showModal} onRequestClose={handleCloseModal}>
+                <View style={styles.modalContainer}>
+                    <NewGroupComponent onClose={handleCloseModal}/>
+                </View>
+            </Modal>
         </View>
     );
 };
@@ -86,5 +96,9 @@ const styles = StyleSheet.create({
             width: 0,
             height: 2
         }
-    }
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: "white"
+      }
 })
