@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Pressable, Text, TextInput } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import DestinationSearchBar from "./DestinationSearch";
+import ImagePicker from "./ImagePicker";
 
 export default function NewPost({ onClose }) {
   const [isPressed, setIsPressed] = useState(false);
@@ -32,7 +34,8 @@ export default function NewPost({ onClose }) {
         <Text style={styles.title}>New Post</Text>
         <View style={{ width: 40 }}></View>
       </View>
-
+        <ImagePicker/>
+        <DestinationSearchBar/>
       <View style={styles.inputContainer}>
         <View style={styles.inputLabel}>
           <Text style={styles.inputText}>Avalanche danger:</Text>

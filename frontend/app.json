@@ -10,12 +10,17 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+      
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to add pictures to posts.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to select and upload photos."
+      }
     },
     "android": {
       "adaptiveIcon": {

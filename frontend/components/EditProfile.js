@@ -19,7 +19,7 @@ export default function EditProfile({onClose}){
         </View>
         </View>
     )
-}   
+} 
 
 const styles = StyleSheet.create({
     container: {
