@@ -52,6 +52,12 @@ const ProfileScreen = () => {
                     <Text style={styles.BuddieLabel}>Buddies</Text>
                 </View>
             </View>
+            <View style={styles.bioContainer}>
+                <Text style={styles.bioText}>Hobbies: Running, Hiking, Backcountry skiing, climbing</Text> 
+                {/*Dummie value, need to fecth user data and display the Hobbies*/}
+                <Text style={styles.bioText}>Hometown: "Trondheim"</Text> 
+                {/* Same as over */}
+            </View>
 
             <Pressable style={styles.editProfileButton} onPress={handleEditProfilePress}>
                 <Text style={styles.editProfileButtonText}>Edit Profile</Text>
@@ -110,7 +116,7 @@ const styles = StyleSheet.create({
     profileHeader: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 16
+        marginBottom: 10
     },
     profileImage: {
         width: 100,
@@ -185,6 +191,15 @@ const styles = StyleSheet.create({
     modalContainer: {
         flex: 1,
         backgroundColor: "white"
+      },
+      bioText: {
+        fontSize: 16
+      },
+      bioContainer: {
+        paddingBottom: 10,
+        paddingTop: 5,
+        borderTopWidth: 2,
+        borderTopColor: "#0096FF"
       }
 })    
 
