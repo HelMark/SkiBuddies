@@ -20,6 +20,11 @@ export default function NewPost({ onClose }) {
     setIsPressed(false);
   };
 
+  const handleEnterPress =() =>{
+    textInputRef.blur();
+  }
+  let textInputRef;
+
   const handlePressPost = () => {
     // logic for saving the post to the database
     handlePressClose();
@@ -34,7 +39,6 @@ export default function NewPost({ onClose }) {
         <Text style={styles.title}>New Post</Text>
         <View style={{ width: 40 }}></View>
       </View>
-        <ImagePicker/>
         <DestinationSearchBar/>
       <View style={styles.inputContainer}>
         <View style={styles.inputLabel}>
@@ -45,6 +49,9 @@ export default function NewPost({ onClose }) {
           placeholder="Enter avalanche danger"
           multiline={true}
           numberOfLines={3}
+          onSubmitEditing={handleEnterPress}
+          blurOnSubmit={true}
+          ref={(ref) => (textInputRef = ref)}
         />
       </View>
 
@@ -52,12 +59,14 @@ export default function NewPost({ onClose }) {
         <View style={styles.inputLabel}>
           <Text style={styles.inputText}>Snow Conditions:</Text>
         </View>
-        
         <TextInput
           style={styles.input}
           placeholder="Enter snow conditions"
           multiline={true}
           numberOfLines={3}
+          onSubmitEditing={handleEnterPress}
+          blurOnSubmit={true}
+          ref={(ref) => (textInputRef = ref)}
         />
       </View>
 
@@ -70,7 +79,11 @@ export default function NewPost({ onClose }) {
           placeholder="Enter route"
           multiline={true}
           numberOfLines={3}
+          onSubmitEditing={handleEnterPress}
+          blurOnSubmit={true}
+          ref={(ref) => (textInputRef = ref)}
         />
+        <ImagePicker/>
       </View>
 
       <Pressable
@@ -127,6 +140,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginTop: 20,
+    bottom: 200
   },
   inputLabel: {
     fontSize: 16,

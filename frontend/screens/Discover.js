@@ -75,7 +75,7 @@ const Discover = () => {
         setShowModal(false);
      };
      return (
-        <View style= {{flex:1 }}>
+        <View style= {{flex:1, justifyContent: "center", alignItems: "center" }}>
             <SearchBar onSearch={handleSearch} placeholder= "Search for your destination..."/>
             <TouchableOpacity style={{zIndex:1}} onPress={() => {
                 setShowModal(true)
@@ -84,7 +84,7 @@ const Discover = () => {
                 name = "ios-add-circle-outline"
                 size={90}
                 color="#0096FF"
-                style = {{alignSelf: "center", position: "absolute", top: windowWidth*1.28, left:150}}/>
+                style={{position: "absolute", alignSelf: "center", top: 500}}/>
             </TouchableOpacity>
       
             <Modal visible={showModal} onRequestClose={handleCloseModal}>
