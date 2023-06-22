@@ -4,6 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 import SearchBar from "../components/SearchBar"
 
 export default function NewGroupComponent({onClose}) {
+    const [person, setPerson] = useState([ //Dummie values
+        {id: 1, name: "Person 1"},
+        {id: 2, name: "Person 2"},
+        {id: 3, name: "Person 3"},
+    ]);
+
     const[isFocused, setIsFocused] = useState(false);
     const[isModified, setIsModified] = useState(false);
 
@@ -12,10 +18,17 @@ export default function NewGroupComponent({onClose}) {
         setIsFocused(true);
     }
 
+    //Need to add functionality to check if the added members is empty, 
+    //hadded selected members to the list and a remove button on each selected member
+
     const handleBlur = () => {
         setIsFocused(false);
     }
     const borderColor = isFocused ? "#0096FF" : "#D3D3D3";
+
+    const handleGroupNameChange = () => {
+        setIsModified(true)
+    };
 
     const handlePressClose= () => {
         if(isModified) {
@@ -60,10 +73,15 @@ export default function NewGroupComponent({onClose}) {
         style={[styles.GropNameInput, {borderColor}]}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        placeholder="Give the new group a name..."/>
+        placeholder="Give the new group a name..."
+        onChangeText={handleGroupNameChange}/>
         <Text style={styles.GroupText}>Members: </Text>
         <ScrollView style={styles.ScrollContainer}>
-
+        {person.map((person) => (
+            <View style={styles.ContainerItem} key={person.id}>
+                <Text>{person.name}</Text>
+            </View>
+        ))}
         </ScrollView>
         <View style={styles.footer}>
                 <Pressable style={styles.saveButton} onPress={handleCreateNewGroup}>
@@ -132,5 +150,11 @@ const styles = StyleSheet.create({
         borderColor: "#D3D3D3",
         borderWidth: 3,
         borderRadius: 10,
-    }
+        paddingHorizontal: 10
+    },
+    ContainerItem: {
+        paddingVertical:20,
+        borderBottomWidth: 2,
+        borderBottomColor: "#D3D3D3",
+    },
 })
