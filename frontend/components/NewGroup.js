@@ -1,10 +1,47 @@
-import React from "react";
-import { StyleSheet, View, Pressable, Text } from "react-native";
+import React, {useState} from "react";
+import { StyleSheet, View, Pressable, Text, TextInput, Alert, ScrollView } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import SearchBar from "../components/SearchBar"
 
 export default function NewGroupComponent({onClose}) {
+    const[isFocused, setIsFocused] = useState(false);
+    const[isModified, setIsModified] = useState(false);
+
+
+    const handleFocus= () => {
+        setIsFocused(true);
+    }
+
+    const handleBlur = () => {
+        setIsFocused(false);
+    }
+    const borderColor = isFocused ? "#0096FF" : "#D3D3D3";
 
     const handlePressClose= () => {
+        if(isModified) {
+            Alert.alert(
+                "Unsaved Changes",
+                "Are you sure you want to leave? Your changes won't be saved",
+                [
+                    {
+                        text: "Stay",
+                        style: "cancel"
+                    },
+                    {
+                        text: "Leave",
+                        onPress: onClose,
+                    }
+                ]
+            );
+        } else {
+            onClose();
+        }
+    };
+    
+    const handleCreateNewGroup = () => {
+        //send the new group to the database 
+        setIsModified(false);
+        Alert.alert("New group added", "A new group with your selected Buddies have been added");
         onClose();
     }
 
@@ -17,6 +54,22 @@ export default function NewGroupComponent({onClose}) {
         <Text style={styles.title}>New Group</Text>
         <View style={{width: 40}}></View>
         </View>
+        <SearchBar placeholder={"Search for a profile to add to the group..."}/>
+        <Text style={styles.GroupText}>Group Name:</Text>
+        <TextInput
+        style={[styles.GropNameInput, {borderColor}]}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        placeholder="Give the new group a name..."/>
+        <Text style={styles.GroupText}>Members: </Text>
+        <ScrollView style={styles.ScrollContainer}>
+
+        </ScrollView>
+        <View style={styles.footer}>
+                <Pressable style={styles.saveButton} onPress={handleCreateNewGroup}>
+                    <Text style={styles.saveButtonText}>Create new Group</Text>
+                </Pressable>
+            </View>
         </View>
     )
 }
@@ -42,5 +95,42 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: 20,
         color: "#0096FF", 
-        }
+        },
+    GropNameInput: {
+        height: 40,
+        borderColor: "#D3D3D3",
+        borderWidth: 3,
+        borderRadius: 10,
+    },
+    GroupText: {
+        marginTop: 10,
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "#0096FF",
+        letterSpacing: 1.5
+    },
+    footer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 30
+    },
+    saveButton: {
+        backgroundColor: "#0096FF",
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 5,
+        bottom: 20
+    },
+    saveButtonText: {
+        color: "white",
+        fontSize: 16,
+        fontWeight: "bold"
+    },
+    ScrollContainer: {
+        flex:1,
+        borderColor: "#D3D3D3",
+        borderWidth: 3,
+        borderRadius: 10,
+    }
 })

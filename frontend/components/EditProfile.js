@@ -72,6 +72,7 @@ export default function EditProfile({onClose}){
          //Send API request to update user information
         setIsModified(false);
         Alert.alert("Changes Saved", "Your changes have been saved successfully");
+        onClose();
     };
 
     const handleFirstNameChange = (text) => {
