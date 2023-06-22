@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {View, StyleSheet, Pressable, Text, TextInput, Alert } from "react-native";
+import {View, StyleSheet, Pressable, Text, TextInput, Alert, Modal } from "react-native";
 import { Switch } from "react-native-switch";
 import { Ionicons } from '@expo/vector-icons';
+import EditImages from "./EditImages"
 
 export default function EditProfile({onClose}){
     const[firstName, setFirstName] = useState("");
@@ -119,6 +120,13 @@ export default function EditProfile({onClose}){
         setIsModified(true)
     }
 
+    const [showModal, setShowModal] = useState(false);
+    const [editImages, setEditImages] = useState(false);
+    const handleCloseModal = () => {
+        setEditImages(false);
+        setShowModal(false);
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -165,6 +173,9 @@ export default function EditProfile({onClose}){
                 value={passwordConfirmation}
                 onChangeText={handlePasswordConfirmationChange}
                 secureTextEntry/>
+                <Pressable onPress={() => setShowModal(true)} style={[styles.saveButton, {marginTop: 20, alignItems: "center"}]}>
+                    <Text style={styles.saveButtonText}>Edit Profile Images</Text>
+                </Pressable>
                 <View style={styles.switchContainer}>
                 <Text style={styles.label}> Profile Privacy:</Text>
                 <Switch
@@ -197,6 +208,11 @@ export default function EditProfile({onClose}){
                     <Text style={styles.saveButtonText}>Save Changes</Text>
                 </Pressable>
             </View>
+            <Modal visible={showModal} onRequestClose={handleCloseModal}>
+                <View>
+                    <EditImages onClose={handleCloseModal}/>
+                </View>
+            </Modal>
         </View>
     )
 } 
@@ -206,6 +222,9 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
     },
+    modalContainer: {
+        flex: 1,
+      },
     header :{
         flexDirection: "row",
         justifyContent: "space-between",
@@ -267,7 +286,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         marginBottom: 10,
         marginRight: 10,
-        marginTop: 10
     },
     switch: {
         circleSize: 24,
@@ -278,5 +296,5 @@ const styles = StyleSheet.create({
         circleActiveColor: "white",
         circleInActiveColor: "white",
         changeValueImmediately: true
-    }
+    },
 })
