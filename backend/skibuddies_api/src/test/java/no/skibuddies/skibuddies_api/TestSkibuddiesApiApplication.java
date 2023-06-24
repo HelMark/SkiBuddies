@@ -1,4 +1,4 @@
-package skibuddies.backend.skibuddiesspringapp;
+package no.skibuddies.skibuddies_api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.MongoDBContainer;
 
 @TestConfiguration(proxyBeanMethods = false)
-public class TestSkibuddiesSpringAppApplication {
+public class TestSkibuddiesApiApplication {
 
 	@Bean
 	@ServiceConnection
@@ -16,7 +16,7 @@ public class TestSkibuddiesSpringAppApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.from(SkibuddiesSpringAppApplication::main).with(TestSkibuddiesSpringAppApplication.class).run(args);
+		SpringApplication.from(SkibuddiesApiApplication::main).with(TestSkibuddiesApiApplication.class).run(args);
 	}
 
 }

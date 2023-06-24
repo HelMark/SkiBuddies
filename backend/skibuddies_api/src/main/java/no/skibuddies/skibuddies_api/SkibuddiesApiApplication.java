@@ -1,13 +1,13 @@
-package skibuddies.backend.skibuddiesspringapp;
+package no.skibuddies.skibuddies_api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SkibuddiesSpringAppApplication {
+public class SkibuddiesApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SkibuddiesSpringAppApplication.class, args);
+		SpringApplication.run(SkibuddiesApiApplication.class, args);
 	}
 
 }

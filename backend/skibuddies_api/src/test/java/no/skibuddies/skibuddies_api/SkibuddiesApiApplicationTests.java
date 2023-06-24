@@ -1,10 +1,10 @@
-package skibuddies.backend.skibuddiesspringapp;
+package no.skibuddies.skibuddies_api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SkibuddiesSpringAppApplicationTests {
+class SkibuddiesApiApplicationTests {
 
 	@Test
 	void contextLoads() {
