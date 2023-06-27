@@ -5,19 +5,9 @@ import DestinationSearchBar from "./DestinationSearch";
 import ImagePicker from "./ImagePicker";
 
 export default function NewPost({ onClose }) {
-  const [isPressed, setIsPressed] = useState(false);
-  const addButtonStyle = isPressed ? [styles.addButton, styles.addButtonPressed] : styles.addButton;
 
   const handlePressClose = () => {
     onClose();
-  };
-
-  const handleButtonPressIn = () => {
-    setIsPressed(true);
-  };
-
-  const handleButtonPressOut = () => {
-    setIsPressed(false);
   };
 
   const handleEnterPress =() =>{
@@ -86,15 +76,7 @@ export default function NewPost({ onClose }) {
         <ImagePicker/>
       </View>
 
-      <Pressable
-        style={({ pressed }) => [
-          styles.addButton,
-          { backgroundColor: pressed ? "#0096FF" : "gray" },
-        ]}
-        onPress={handlePressPost}
-        onPressIn={handleButtonPressIn}
-        onPressOut={handleButtonPressOut}
-      >
+      <Pressable style={styles.addButton} onPress={handlePressPost}>
         <Text style={styles.addButtonText}>Add Post</Text>
       </Pressable>
     </View>
@@ -125,11 +107,11 @@ const styles = StyleSheet.create({
     color: "#0096FF",
   },
   addButton: {
-    backgroundColor: "gray",
+    backgroundColor: "#0096FF",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    marginTop: 20,
+    marginBottom: 10,
     alignSelf: "center",
   },
   addButtonText: {
