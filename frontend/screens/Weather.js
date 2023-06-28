@@ -8,6 +8,7 @@ export default function Weather() {
 
     const handleSearch = searchText => {
         //Logic for handling searched destination
+        console.log(searchText)
     };
 
     const handleRegionPress = region => {

@@ -14,6 +14,7 @@ export default function Chat() {
 
     const handleSearch = (searchText) => {
         //Logic for search for profile
+        console.log(searchText)
      };
 
     const handleConversationPress = (conversation) =>{

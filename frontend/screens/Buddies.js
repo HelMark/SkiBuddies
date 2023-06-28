@@ -14,6 +14,11 @@ const { width } = Dimensions.get('window');
 
 export default function Buddies() {
 
+  const handleSearch = (searchText) => {
+    //Logic for search for profile
+    console.log(searchText)
+ };
+
     const renderCard = (profile) => {
     return (
     <View style={styles.card}>
@@ -30,7 +35,7 @@ export default function Buddies() {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <SearchBar placeholder={"Search for profiles..."} />
+        <SearchBar onSearch={handleSearch} placeholder={"Search for profiles..."} />
         <Text style={styles.headerText}>Recommended Profiles:</Text>
       </View>
       <View style={styles.contentContainer}>

@@ -70,6 +70,7 @@ const Discover = () => {
      };
      const handleSearch = (searchText) => {
         //Logic for search for info destination
+        console.log(searchText)
      };
      const handleCloseModal = () => {
         setShowModal(false);

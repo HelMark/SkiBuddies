@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {View, StyleSheet, Pressable, Text, TextInput, Alert, Modal } from "react-native";
+import {View, StyleSheet, Pressable, Text, TextInput, Alert, Modal, ScrollView } from "react-native";
 import { Switch } from "react-native-switch";
 import { Ionicons } from '@expo/vector-icons';
-import EditImages from "./EditImages"
+import EditImages from "./EditImages";
 
 export default function EditProfile({onClose}){
     const[firstName, setFirstName] = useState("");
@@ -136,7 +136,7 @@ export default function EditProfile({onClose}){
         <Text style={styles.title}>Edit Profile</Text>
         <View style={{width: 40}}></View>
         </View>
-            <View style={styles.content}> 
+            <ScrollView style={styles.content}> 
                 <Text style={styles.label}>First Name:</Text>
                 <TextInput
                 style={styles.input}
@@ -173,9 +173,8 @@ export default function EditProfile({onClose}){
                 value={passwordConfirmation}
                 onChangeText={handlePasswordConfirmationChange}
                 secureTextEntry/>
-                <Pressable onPress={() => setShowModal(true)} style={[styles.saveButton, {marginTop: 20, alignItems: "center"}]}>
-                    <Text style={styles.saveButtonText}>Edit Profile Images</Text>
-                </Pressable>
+                <Text style={styles.ProfileImagesText}>Profile Images:</Text>
+                <EditImages/>
                 <View style={styles.switchContainer}>
                 <Text style={styles.label}> Profile Privacy:</Text>
                 <Switch
@@ -202,17 +201,12 @@ export default function EditProfile({onClose}){
                 )}
                 />
                 </View>
-            </View>
+            </ScrollView>
             <View style={styles.footer}>
                 <Pressable style={styles.saveButton} onPress={handleSaveChanges}>
                     <Text style={styles.saveButtonText}>Save Changes</Text>
                 </Pressable>
             </View>
-            <Modal visible={showModal} onRequestClose={handleCloseModal}>
-                <View>
-                    <EditImages onClose={handleCloseModal}/>
-                </View>
-            </Modal>
         </View>
     )
 } 
@@ -269,7 +263,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,
-        bottom: 20
+        marginTop: 20
     },
     saveButtonText: {
         color: "white",
@@ -297,4 +291,11 @@ const styles = StyleSheet.create({
         circleInActiveColor: "white",
         changeValueImmediately: true
     },
+    ProfileImagesText:{
+        fontSize: 24,
+        fontWeight: "bold",
+        letterSpacing: 1,
+        alignSelf: "center",
+        color: "#0096FF", 
+    }
 })
