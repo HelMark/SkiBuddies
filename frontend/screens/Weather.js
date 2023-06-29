@@ -1,7 +1,8 @@
-import {View, Text, Modal, TouchableOpacity } from 'react-native';
+import {View, Text, Modal, StyleSheet, Image } from 'react-native';
 import SearchBar from "../components/SearchBar.js";
 import RegionSelector from '../components/RegionSelector.js';
 import React, { useState } from 'react';
+import WeatherArea from '../components/WeatherArea.js';
 
 export default function Weather() {
     const [selectedRegion, setSelectedRegion] = useState(null);
@@ -23,16 +24,38 @@ export default function Weather() {
             <View style={{flex:1}}>
                 <SearchBar onSearch= {handleSearch} placeholder= "Search for weather reports for your destination... " />
                 <RegionSelector onRegionPress = {handleRegionPress} />
-                <Modal visible={selectedRegion !== null} animationType="slide">
-                    <View style={{flex:1, alignItems: "center", justifyContent: "center"}}>
-                        <Text style={{fontSize: 18, marginBottom: 20, top:-300, left:20}}>
-                            Weather for {selectedRegion}
-                        </Text>
-                        <TouchableOpacity onPress={handleCloseModal} style={{padding: 10, backgroundColor: 'lightgray', top:-350, left:-150}}>
-                            <Text>Close</Text>
-                        </TouchableOpacity>
+                <View style={styles.footer}>
+                    <Text style={styles.footerText}>Weather data is delivered by: </Text>
+                    <View style={styles.footerImagesContainer}>
+                    <Image style={styles.footerImage} source={require ("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/varsom.png")}/>
+                    <Image style={styles.footerImage} source={require ("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/met.institutt.png")}/>
                     </View>
+                </View>
+                <Modal visible={selectedRegion !== null} animationType="slide">
+                   <WeatherArea selectedRegion={selectedRegion} onClose={handleCloseModal}/>
                 </Modal>
             </View>  
     );
 }
+const styles = StyleSheet.create({
+    footer:{
+        bottom: 110,
+        alignItems: "center",
+    },
+    footerText:{
+        fontSize: 14,
+        fontWeight: "bold",
+        color: "#0096FF"
+    },
+    footerImagesContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+      },
+    footerImage: {
+        width: 100,
+        height: 100,
+        marginHorizontal: 30,
+        marginTop: 5,
+        borderRadius: 5
+    }
+})

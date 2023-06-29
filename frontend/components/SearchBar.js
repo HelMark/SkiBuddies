@@ -7,9 +7,7 @@ const SearchBar = ({onSearch, placeholder}) => {
 
     const handleSearch = () => {
         onSearch(searchText);
-        setSearchText('');
     };
-
     const handleFocus = () => {
         setIsFocused(true);
     };
