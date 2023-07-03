@@ -131,7 +131,7 @@ import {View, TextInput, TouchableOpacity, StyleSheet, Text, ScrollView } from "
                 onChangeText={handleSearchInputChange}
                 placeholder="Search for your destination..."/>
                 {filteredMountains.length> 0 && (
-                    <ScrollView style={styles.scrollContainer}>
+                    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContent}>
                         {filteredMountains.map((mountain) =>(
                             <TouchableOpacity
                             key={mountain.id}
@@ -156,19 +156,24 @@ import {View, TextInput, TouchableOpacity, StyleSheet, Text, ScrollView } from "
             borderColor: "#D3D3D3",
             borderWidth: 1,
             paddingHorizontal: 10,
-            marginBottom: 10
+            marginBottom: 10,
+            right: 15
         },
         scrollContainer: {
-            maxHeight: 100,
+            maxHeight: 80,
             borderWidth: 1,
             borderColor: "#D3D3D3",
-            marginBottom: 10
+            marginBottom: 10,
+            right: 15
         },
+        scrollContent: {
+            flexGrow: 1
+          },
         recommendationItem: {
             paddingVertical: 8,
             paddingHorizontal: 10,
             borderBottomColor: "#D3D3D3",
-            borderBottomWidth: 1
+            borderBottomWidth: 1,
         }
       })
       export default DestinationSearchBar;

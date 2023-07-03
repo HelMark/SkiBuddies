@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, Pressable, Text, TextInput } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import DestinationSearchBar from "./DestinationSearch";
-import ImagePicker from "./ImagePicker";
+import ImagePickerComponent from "./ImagePicker";
 
 export default function NewPost({ onClose }) {
 
@@ -14,6 +14,11 @@ export default function NewPost({ onClose }) {
     textInputRef.blur();
   }
   let textInputRef;
+
+  const handleImageSelect = (selectedImage) => {
+    //Add code here
+    console.log("Image uploaded")
+  }
 
   const handlePressPost = () => {
     // logic for saving the post to the database
@@ -29,7 +34,8 @@ export default function NewPost({ onClose }) {
         <Text style={styles.title}>New Post</Text>
         <View style={{ width: 40 }}></View>
       </View>
-        <DestinationSearchBar/>
+      <View style={styles.bodyContainer}>
+        <DestinationSearchBar />
       <View style={styles.inputContainer}>
         <View style={styles.inputLabel}>
           <Text style={styles.inputText}>Avalanche danger:</Text>
@@ -44,7 +50,6 @@ export default function NewPost({ onClose }) {
           ref={(ref) => (textInputRef = ref)}
         />
       </View>
-
       <View style={styles.inputContainer}>
         <View style={styles.inputLabel}>
           <Text style={styles.inputText}>Snow Conditions:</Text>
@@ -59,7 +64,6 @@ export default function NewPost({ onClose }) {
           ref={(ref) => (textInputRef = ref)}
         />
       </View>
-
       <View style={styles.inputContainer}>
         <View style={styles.inputLabel}>
           <Text style={styles.inputText}>Route:</Text>
@@ -73,12 +77,12 @@ export default function NewPost({ onClose }) {
           blurOnSubmit={true}
           ref={(ref) => (textInputRef = ref)}
         />
-        <ImagePicker/>
+        <ImagePickerComponent onImageSelect={handleImageSelect}/>
       </View>
-
       <Pressable style={styles.addButton} onPress={handlePressPost}>
         <Text style={styles.addButtonText}>Add Post</Text>
       </Pressable>
+      </View>
     </View>
   );
 }
@@ -92,6 +96,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  bodyContainer: {
+    flex: 1
   },
   backButton: {
     width: 40,
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputContainer: {
-    marginTop: 20,
+    marginTop: 10,
     bottom: 200
   },
   inputLabel: {

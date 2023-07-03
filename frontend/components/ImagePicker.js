@@ -1,27 +1,50 @@
-import React, { useState } from "react";
-import {View, Button, Image} from "react-native"
-import * as ImagePicker from 'react-native-image-picker'
+import React, { useState } from 'react';
+import { Pressable, Image, View, StyleSheet, Text} from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
-const ImagePickerComponent =() => {
-    const[selectedImage, setSelectedImage] = useState(null);
+export default function ImagePickerComponent({onImageSelect}) {
 
-    const openImagePicker = ()=> {
-        ImagePicker.launchImageLibrary({}, (response) => {
-            if(response.didCancel) {
-                console.log("User cancelled image picker");
-            } else if(response.error) {
-                console.log("Image picker error:", response.error);
-            } else {
-                setSelectedImage(response.uri);
-            }
-        });
-    };
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      quality: 1,
+    });
 
-    return (
-        <View>
-            <Button title="Selected Image" onPress={openImagePicker}/>
-            {selectedImage && <Image source={{uri: selectedImage}} style={{width: 200, height: 200}}/>}
-        </View>
-    );
-};
-export default ImagePickerComponent;
+    console.log(result);
+
+    if (!result.canceled) {
+      const selectedImageUri = result.assets[0].uri;
+      setImage(result.assets[0].uri);
+      onImageSelect(selectedImageUri);
+      
+    }
+  };
+
+  return (
+    <View >
+      <Pressable onPress={pickImage} style={styles.button}>
+        <Text style={styles.buttonText}>Add a image from your library</Text>
+      </Pressable>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "#0096FF",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginBottom: 16,
+    top: 10
+  },
+  buttonText: {
+    color: "#FFF",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+})
+
