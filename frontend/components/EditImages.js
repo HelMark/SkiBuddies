@@ -1,47 +1,99 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, StyleSheet, Alert, Image, Pressable } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons';
 import ImagePickerComponent from "./ImagePicker"
 
 const EditImages = () => {
   const [profileImages, setProfileImages] = useState([
-    require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde15.jpeg"),
-    require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde14.jpeg"),
-    require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde13.jpeg"),
-    require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde9.jpeg"),
-    require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde7.jpeg"),
-    require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg"),
+    null, null, null, null, null, null, 
   ]);
+
+  const handleImageSelect = (selectedImageUri) => {
+    const updateImages = [...profileImages];
+    const emptySlotIndex = updateImages.findIndex((image) => image === null);
+
+    if(emptySlotIndex !== -1) {
+      updateImages[emptySlotIndex] = selectedImageUri;
+      setProfileImages(updateImages);
+    } else {
+      Alert.alert("Grid is Full", "You cannot add more Images")
+    }
+  }
+
+  const removeImage = (index) => {
+    const updateImages = [...profileImages];
+    updateImages[index] = null;
+    setProfileImages(updateImages)
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.imageGrid}>
         {profileImages.map((image, index) => (
-            <Image source={image}  key={index} style={styles.image} />
+          <View key={index} style={styles.imageContainer}>
+            {image ? (
+              <>
+              <Image source={{ uri: image }} style={styles.image} />
+              <Pressable style={styles.removeIcon}
+              onPress={() => removeImage(index)}>
+                <MaterialIcons name="highlight-remove" size={26} style={styles.icon} />
+              </Pressable>
+              </>
+            ) : (
+              <View style={styles.placeholder} />
+              )}
+          </View>
         ))}
       </View>
-      <ImagePickerComponent />
+      <ImagePickerComponent onImageSelect={handleImageSelect} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
-    marginBottom: 40,
+    flex: 1,
+    padding: 20
   },
   imageGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
   },
-  image: {
-    width: 100,
-    height: 150,
+  imageContainer: {
+    width: "32%",
+    aspectRatio: 0.75,
     marginBottom: 10,
-    borderColor: "#D3D3D3",
-    borderWidth: 1,
-    borderRadius: 5
   },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    borderRadius: 10
+  },
+  placeholder: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#D3D3D3",
+    borderRadius: 10,
+    borderStyle: "dashed"
+  }, 
+  removeIcon: {
+    position: "absolute",
+    top: 2,
+    right: 2,
+    zIndex: 1
+  },
+  icon: {
+    color: "#0096FF",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 4
+  }
 });
 
 export default EditImages;

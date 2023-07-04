@@ -176,7 +176,7 @@ export default function EditProfile({onClose}){
                 <Text style={styles.ProfileImagesText}>Profile Images:</Text>
                 <EditImages/>
                 <View style={styles.switchContainer}>
-                <Text style={styles.label}> Profile Privacy:</Text>
+                <Text style={styles.label}> Private Profile:</Text>
                 <Switch
                 value={isPrivate}
                 onValueChange={toggleProfilePrivacy}
@@ -227,7 +227,15 @@ const styles = StyleSheet.create({
     },
     backButton: {
         width:40,
-        marginTop: 20
+        marginTop: 20,
+        shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2
     },
     title: {
         fontSize: 30,
@@ -263,7 +271,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,
-        marginTop: 20
+        marginTop: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 2,
+        height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 4
     },
     saveButtonText: {
         color: "white",
@@ -272,7 +288,7 @@ const styles = StyleSheet.create({
     },
     SwitchComponent: {
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
     },
     switchContainer: {
         flexDirection: "row",
@@ -289,7 +305,7 @@ const styles = StyleSheet.create({
         backgroundInactive: "#DCDCDC",
         circleActiveColor: "white",
         circleInActiveColor: "white",
-        changeValueImmediately: true
+        changeValueImmediately: true,
     },
     ProfileImagesText:{
         fontSize: 24,

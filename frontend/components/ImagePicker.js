@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, Image, View, StyleSheet, Text} from 'react-native';
+import { Pressable, View, StyleSheet, Text} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function ImagePickerComponent({onImageSelect}) {
@@ -15,10 +15,7 @@ export default function ImagePickerComponent({onImageSelect}) {
     console.log(result);
 
     if (!result.canceled) {
-      const selectedImageUri = result.assets[0].uri;
-      setImage(result.assets[0].uri);
-      onImageSelect(selectedImageUri);
-      
+      onImageSelect(result.uri);
     }
   };
 
@@ -38,7 +35,15 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginBottom: 16,
-    top: 10
+    top: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 4
   },
   buttonText: {
     color: "#FFF",
