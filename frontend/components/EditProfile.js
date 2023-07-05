@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {View, StyleSheet, Pressable, Text, TextInput, Alert, Modal, ScrollView } from "react-native";
+import {View, StyleSheet, Pressable, Text, TextInput, Alert, ScrollView } from "react-native";
 import { Switch } from "react-native-switch";
 import { Ionicons } from '@expo/vector-icons';
 import EditImages from "./EditImages";
+import * as Font from 'expo-font';
 
 export default function EditProfile({onClose}){
+    const [fontLoaded, setFontLoaded] = useState(false);
+
     const[firstName, setFirstName] = useState("");
     const[surname, setSurname] = useState("");
     const[email, setEmail] = useState("");
@@ -18,7 +21,16 @@ export default function EditProfile({onClose}){
 
     const[isModified, setIsModified] = useState(false);
 
-    
+    const loadFonts = async () => {
+    await Font.loadAsync({
+      'Roboto-Regular': require('../fonts/Roboto-Regular.ttf'),
+    });
+    setFontLoaded(true)
+  };
+
+  useEffect(() => {
+    loadFonts(); 
+  }, []);
 
 
     useEffect(() => {
@@ -133,50 +145,50 @@ export default function EditProfile({onClose}){
         <Pressable onPress={handlePressClose}>
             <Ionicons name="md-arrow-back-sharp" size={50} color="#D3D3D3" style={styles.backButton}/>
         </Pressable>
-        <Text style={styles.title}>Edit Profile</Text>
+        {fontLoaded &&<Text style={styles.title}>Edit Profile</Text>}
         <View style={{width: 40}}></View>
         </View>
             <ScrollView style={styles.content}> 
-                <Text style={styles.label}>First Name:</Text>
+                {fontLoaded &&<Text style={styles.label}>First Name:</Text>}
                 <TextInput
                 style={styles.input}
                 value={firstName}
                 onChangeText={handleFirstNameChange}/>
-                <Text style={styles.label}>Surname:</Text>
+                {fontLoaded &&<Text style={styles.label}>Surname:</Text>}
                 <TextInput
                 style={styles.input}
                 value={surname}
                 onChangeText={handleSurnameChange}/>
-                <Text style={styles.label}>Email: </Text>
+                {fontLoaded &&<Text style={styles.label}>Email: </Text>}
                 <TextInput
                 style={styles.input}
                 value={email}
                 onChangeText={handleEmailChange} />
-                <Text style={styles.label}>Hometown:</Text>
+                {fontLoaded &&<Text style={styles.label}>Hometown:</Text>}
                 <TextInput
                 style={styles.input}
                 value={hometown}
                 onChangeText={handleHometownChange}/>
-                <Text style={styles.label}>Hobbies:</Text>
+                {fontLoaded &&<Text style={styles.label}>Hobbies:</Text>}
                 <TextInput
                 style={styles.input}
                 value={hobbies}
                 onChangeText={handleHobbiesChange}/>
-                <Text style={styles.label}>New Password;</Text>
+                {fontLoaded &&<Text style={styles.label}>New Password;</Text>}
                 <TextInput 
                 style={styles.input}
                 value={password}
                 onChangeText={handlePasswordChange}/>
-                <Text style={styles.label}>Confirm Password:</Text>
+                {fontLoaded &&<Text style={styles.label}>Confirm Password:</Text>}
                 <TextInput 
                 style={styles.input}
                 value={passwordConfirmation}
                 onChangeText={handlePasswordConfirmationChange}
                 secureTextEntry/>
-                <Text style={styles.ProfileImagesText}>Profile Images:</Text>
+                {fontLoaded &&<Text style={styles.ProfileImagesText}>Profile Images:</Text>}
                 <EditImages/>
                 <View style={styles.switchContainer}>
-                <Text style={styles.label}> Private Profile:</Text>
+                {fontLoaded &&<Text style={styles.label}> Private Profile:</Text>}
                 <Switch
                 value={isPrivate}
                 onValueChange={toggleProfilePrivacy}
@@ -189,7 +201,7 @@ export default function EditProfile({onClose}){
                 />
                 </View>
                 <View style={styles.switchContainer}>
-                <Text style={styles.label}>Show My Profile in Buddies: </Text>
+                {fontLoaded &&<Text style={styles.label}>Show My Profile in Buddies: </Text>}
                 <Switch
                 value={showBuddies}
                 onValueChange={toggleBuddiesActive}
@@ -204,7 +216,7 @@ export default function EditProfile({onClose}){
             </ScrollView>
             <View style={styles.footer}>
                 <Pressable style={styles.saveButton} onPress={handleSaveChanges}>
-                    <Text style={styles.saveButtonText}>Save Changes</Text>
+                    {fontLoaded &&<Text style={styles.saveButtonText}>Save Changes</Text>}
                 </Pressable>
             </View>
         </View>
@@ -229,9 +241,9 @@ const styles = StyleSheet.create({
         width:40,
         marginTop: 20,
         shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
+        shadowOffset: {
+        width: 0,
+        height: 2,
     },
     shadowOpacity: 0.2,
     shadowRadius: 2,
@@ -240,10 +252,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: "bold",
-        letterSpacing: 1,
         alignSelf: "center",
         marginTop: 20,
         color: "#0096FF", 
+        fontFamily: "Roboto-Regular"
         },
     content: {
         flex: 1
@@ -252,7 +264,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold",
         marginBottom: 5,
-        color: "#0096FF"
+        color: "#0096FF",
+        fontFamily: "Roboto-Regular"
     },
     input: {
         height: 40,
@@ -260,18 +273,21 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 10,
         paddingHorizontal: 10,
+        borderRadius: 5
     },
     footer: {
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        borderTopWidth: 1,
+        borderTopColor: "#D3D3D3"
     },
     saveButton: {
         backgroundColor: "#0096FF",
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,
-        marginTop: 20,
+        marginTop: 10,
         shadowColor: "#000",
         shadowOffset: {
         width: 2,
@@ -284,7 +300,8 @@ const styles = StyleSheet.create({
     saveButtonText: {
         color: "white",
         fontSize: 16,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        fontFamily: "Roboto-Regular"
     },
     SwitchComponent: {
         flexDirection: "row",
@@ -310,8 +327,8 @@ const styles = StyleSheet.create({
     ProfileImagesText:{
         fontSize: 24,
         fontWeight: "bold",
-        letterSpacing: 1,
         alignSelf: "center",
         color: "#0096FF", 
+        fontFamily: "Roboto-Regular"
     }
 })

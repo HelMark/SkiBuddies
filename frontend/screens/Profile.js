@@ -1,10 +1,23 @@
 import {View, Image, Pressable, StyleSheet, Text, ScrollView, Modal} from 'react-native';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import EditProfile from '../components/EditProfile'
+import * as Font from 'expo-font';
 
 const ProfileScreen = () => {
+    const [fontLoaded, setFontLoaded] = useState(false);
+    const loadFonts = async () => {
+        await Font.loadAsync({
+          'Roboto-Regular': require('../fonts/Roboto-Regular.ttf'),
+        });
+        setFontLoaded(true)
+      };
+    
+      useEffect(() => {
+        loadFonts(); 
+      }, []);    
+
     const [selectedMenuItem, setSelectedMenuItem] = useState("myPosts");
 
     const [MyImages, setMyImages] = useState([ //Dummie values 
@@ -39,8 +52,6 @@ const ProfileScreen = () => {
     const [showModal, setShowModal] = useState(false);
     const [editProfile, setEditProfile] = useState(false);
 
-
-
     return (
         <View style={styles.container}>
             <View style={styles.profileHeader}>
@@ -48,19 +59,19 @@ const ProfileScreen = () => {
                 source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg")}
                 style={styles.profileImage}/>
                 <View style={styles.BuddiesCountContainer}>
-                    <Text style={styles.BuddiesCount}>123</Text> 
-                    <Text style={styles.BuddieLabel}>Buddies</Text>
+                    {fontLoaded &&<Text style={styles.BuddiesCount}>123</Text>}
+                    {fontLoaded &&<Text style={styles.BuddieLabel}>Buddies</Text>}
                 </View>
             </View>
             <View style={styles.bioContainer}>
-                <Text style={styles.bioText}>Hobbies: Running, Hiking, Backcountry skiing, climbing</Text> 
+                {fontLoaded &&<Text style={styles.bioText}>Hobbies: Running, Hiking, Backcountry skiing, climbing</Text>}
                 {/*Dummie value, need to fecth user data and display the Hobbies*/}
-                <Text style={styles.bioText}>Hometown: "Trondheim"</Text> 
+                {fontLoaded &&<Text style={styles.bioText}>Hometown: "Trondheim"</Text>}
                 {/* Same as over */}
             </View>
 
             <Pressable style={styles.editProfileButton} onPress={handleEditProfilePress}>
-                <Text style={styles.editProfileButtonText}>Edit Profile</Text>
+                {fontLoaded &&<Text style={styles.editProfileButtonText}>Edit Profile</Text>}
             </Pressable>
             <Modal visible={showModal} onRequestClose={handleCloseModal}>
                 <View style={styles.modalContainer}>
@@ -116,7 +127,8 @@ const styles = StyleSheet.create({
     profileHeader: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 10
+        marginBottom: 10,
+        fontFamily: "Roboto-Regular"
     },
     profileImage: {
         width: 100,
@@ -138,25 +150,36 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 4,
-        top: 16
+        top: 16,
+        fontFamily: "Roboto-Regular"
     },
     BuddieLabel: {
         fontSize: 18,
         color: "gray",
-        top: 24
+        top: 24,
+        fontFamily: "Roboto-Regular"
     },
     editProfileButton: {
         backgroundColor: "#0096FF",
         borderRadius: 8,
         paddingVertical: 10,
         paddingHorizontal: 20,
-        marginBottom: 16
+        marginBottom: 16,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 2,
+        height: 2,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 4
     },
     editProfileButtonText: {
         color: "#FFF",
         fontSize: 16,
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "Roboto-Regular"
     },
     menu: {
         flexDirection: "row",
@@ -170,7 +193,15 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         marginRight: 8,
-        alignItems: "center"
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 2
     },
     selectedMenuItem: {
     }, 
@@ -193,7 +224,8 @@ const styles = StyleSheet.create({
         backgroundColor: "white"
       },
       bioText: {
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: "Roboto-Regular"
       },
       bioContainer: {
         paddingBottom: 10,

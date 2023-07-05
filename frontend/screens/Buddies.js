@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import SearchBar from "../components/SearchBar";
 import Swiper from "react-native-deck-swiper";
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import * as Font from 'expo-font';
 
 const profiles = [
   { id: 1, name: "profile 1", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg") },
@@ -11,8 +12,19 @@ const profiles = [
 ];
 
 const { width } = Dimensions.get('window');
+const screenHeight = Dimensions.get('window').height;
 
 export default function Buddies() {
+  const [fontLoaded, setFontLoaded] = useState(false);
+    const loadFonts = async () => {
+        await Font.loadAsync({
+          'Roboto-Regular': require('../fonts/Roboto-Regular.ttf'),
+        });
+        setFontLoaded(true)
+      };
+      useEffect(() => {
+        loadFonts(); 
+      }, []);
 
   const handleSearch = (searchText) => {
     //Logic for search for profile
@@ -24,8 +36,8 @@ export default function Buddies() {
     <View style={styles.card}>
       <View style={styles.imageContainer}>
         <Image source={profile.image} style={styles.image} />
-        <Text style={styles.profileId}>{profile.id}</Text>
-        <Text style={styles.profileName}>{profile.name}</Text>
+        {fontLoaded &&<Text style={styles.profileId}>{profile.id}</Text>}
+       {fontLoaded &&<Text style={styles.profileName}>{profile.name}</Text>}
       </View>
 
     </View>
@@ -36,7 +48,7 @@ export default function Buddies() {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <SearchBar onSearch={handleSearch} placeholder={"Search for profiles..."} />
-        <Text style={styles.headerText}>Recommended Profiles:</Text>
+        {fontLoaded &&<Text style={styles.headerText}>Recommended Profiles:</Text>}
       </View>
       <View style={styles.contentContainer}>
         <Swiper
@@ -52,10 +64,10 @@ export default function Buddies() {
           stackSize={3} //Might need to change this 
         />
       </View>
-      <View style={styles.bottomContainer}>
-        <AntDesign name="closecircle" size={32} color="red" style={styles.icon} />
-        <AntDesign name="pluscircle" size={32} color="green" style={styles.icon} />
-    </View>
+      <View style={styles.bottomIconContainer}>
+        <MaterialIcons name="highlight-remove" size={52} color="#E54C38" style={styles.icon} />
+        <MaterialIcons name="add-circle-outline" size={52} color="#00AB41" style={styles.icon} />
+        </View>
     </View>
   );
 }
@@ -71,9 +83,9 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     fontWeight: "bold",
-    letterSpacing: 1,
     color: "#0096FF",
     marginTop: 10,
+    fontFamily: "Roboto-Regular"
   },
   contentContainer: {
     alignItems: 'center',
@@ -82,7 +94,7 @@ const styles = StyleSheet.create({
   },
   swiperCard: {
     width: width-40,
-    height: width * 1.35,
+    height: screenHeight*0.62,
     borderRadius: 10,
     backgroundColor: 'white',
     elevation: 4,
@@ -119,6 +131,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: "Roboto-Regular"
   },
   profileName: {
     position: 'absolute',
@@ -130,24 +143,25 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 26,
     fontWeight: 'bold',
+    fontFamily: "Roboto-Regular"
   },
-  bottomContainer: {
-    flexDirection: 'row',
-    zIndex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    alignSelf: "center",
-    paddingHorizontal: 20,
-    top: 545,
-    borderWidth: 2,
-    borderColor: "#D3D3D3",
-    borderRadius: 10,
-    height: 40,
-    width: "100%"
+  bottomIconContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    top: screenHeight*0.635
   },
   icon: {
     zIndex: 1,
-    marginHorizontal: 10,
+    marginHorizontal: 25,
+    shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 2
   },
 });
 

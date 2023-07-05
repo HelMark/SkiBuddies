@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 const windowWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 const DiscoverScreen = () => {
     const [images, setImages] = useState([ //Dummie values
@@ -46,8 +47,8 @@ const panResponder = PanResponder.create({
 
 return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={handleSwipeUp} style={{zIndex: 1,top : windowWidth*1.32, left: 240, position: "absolute"}}>
-        <Ionicons name="refresh-circle-outline" size={60} color="#0096FF" style={{alignSelf: "center", zIndex:1,}} />
+        <TouchableOpacity onPress={handleSwipeUp} style={{zIndex: 1}}>
+        <Ionicons name="refresh-circle-outline" size={60} color="#0096FF" style={styles.refreshButton}/>
         </TouchableOpacity>
         <Animated.View style={{transform : [{translateY: swipeUpGesture}]}}>
         <View style={styles.gridContainer}>
@@ -81,11 +82,7 @@ const Discover = () => {
             <TouchableOpacity style={{zIndex:1}} onPress={() => {
                 setShowModal(true)
                 handleNewPostPress(newPost)}}>
-                <Ionicons
-                name = "ios-add-circle-outline"
-                size={90}
-                color="#0096FF"
-                style={{position: "absolute", alignSelf: "center", top: 500}}/>
+                <Ionicons name = "ios-add-circle-outline" size={90} color="#0096FF" style={styles.newPostButton}/>
             </TouchableOpacity>
       
             <Modal visible={showModal} onRequestClose={handleCloseModal}>
@@ -119,6 +116,33 @@ const styles = StyleSheet.create ({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    newPostButton: {
+        position: "absolute", 
+        alignSelf: "center", 
+        top: screenHeight*0.60,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 2
+    },
+    refreshButton: {
+        position: "absolute",
+        zIndex: 1,
+        top : screenHeight*0.605, 
+        left: windowWidth*0.60,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 0,
+        height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 2
     }
 })
 

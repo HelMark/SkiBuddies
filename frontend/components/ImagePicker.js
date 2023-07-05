@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pressable, View, StyleSheet, Text} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as Font from 'expo-font';
 
 export default function ImagePickerComponent({onImageSelect}) {
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      'Roboto-Regular': require('../fonts/Roboto-Regular.ttf'),
+    });
+    setFontLoaded(true)
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -19,10 +28,14 @@ export default function ImagePickerComponent({onImageSelect}) {
     }
   };
 
+  useEffect(() => {
+    loadFonts(); 
+  }, []);
+
   return (
     <View >
       <Pressable onPress={pickImage} style={styles.button}>
-        <Text style={styles.buttonText}>Add a image from your library</Text>
+       {fontLoaded && <Text style={styles.buttonText}>Add a image from your library</Text>}
       </Pressable>
     </View>
   );
@@ -49,7 +62,8 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 16,
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "Roboto-Regular"
   },
 })
 

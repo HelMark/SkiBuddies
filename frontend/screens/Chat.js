@@ -1,10 +1,21 @@
 import {ScrollView, View, TouchableOpacity, StyleSheet, Text, Pressable, Modal} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchBar from '../components/SearchBar';
 import { MaterialIcons } from '@expo/vector-icons';
 import NewGroupComponent from '../components/NewGroup';
+import * as Font from 'expo-font';
 
 export default function Chat() {
+    const [fontLoaded, setFontLoaded] = useState(false);
+    const loadFonts = async () => {
+        await Font.loadAsync({
+          'Roboto-Regular': require('../fonts/Roboto-Regular.ttf'),
+        });
+        setFontLoaded(true)
+      };
+      useEffect(() => {
+        loadFonts(); 
+      }, []);
 
     const [conversations, setConversations] = useState([ //Dummie values
         {id: 1, name: "Conversation 1"},
@@ -33,7 +44,7 @@ export default function Chat() {
         <View style={styles.container}>
             <SearchBar onSearch={handleSearch} placeholder= "Search for a profile..."/>
             <View style={styles.header}>
-                <Text style={styles.title}>Conversations</Text>
+                {fontLoaded &&<Text style={styles.title}>Conversations</Text>}
                 <Pressable onPress={() => setShowModal(true)}>
                     <MaterialIcons name="group-add" size={40} color="#0096FF" style={styles.button} />
                 </Pressable>
@@ -44,7 +55,7 @@ export default function Chat() {
                     key={conversation.id}
                     style={styles.conversationItem}
                     onPress={() => handleConversationPress(conversation)}>
-                        <Text>{conversation.name}</Text>
+                        {fontLoaded &&<Text>{conversation.name}</Text>}
                     </TouchableOpacity>
                 ))}
             </ScrollView>
@@ -75,7 +86,8 @@ const styles = StyleSheet.create({
         color: "#0096FF",
         left: 110,
         paddingTop: 5,
-        paddingBottom: 10
+        paddingBottom: 10,
+        fontFamily: "Roboto-Regular"
     },
     conversationContainer: {
         flex: 1,
@@ -84,19 +96,21 @@ const styles = StyleSheet.create({
     conversationItem: {
         paddingVertical:30,
         borderBottomWidth: 1,
-        borderBottomColor: "#D3D3D3"
+        borderBottomColor: "#D3D3D3",
+        fontFamily: "Roboto-Regular"
     }, 
     button: {
         paddingRight: 10,
         elevation: 5,
         color: "#0096FF",
         shadowColor: "#000",
-        shadowRadius: 5,
-        shadowOpacity: 0.25,
         shadowOffset: {
-            width: 0,
-            height: 2
-        }
+        width: 0,
+        height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 2
     },
     modalContainer: {
         flex: 1,
