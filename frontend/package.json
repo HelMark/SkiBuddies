@@ -11,7 +11,8 @@
   "dependencies": {
     "@expo-google-fonts/raleway": "^0.2.3",
     "@react-navigation/bottom-tabs": "^6.5.7",
-    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/stack": "^6.3.17",
     "expo": "~48.0.18",
     "expo-app-loading": "^2.1.1",
     "expo-font": "~11.1.1",
@@ -19,6 +20,7 @@
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-date-picker": "^4.2.13",
     "react-native-deck-swiper": "^2.0.14",
     "react-native-image-picker": "^5.4.0",
     "react-native-switch": "^1.5.1",
