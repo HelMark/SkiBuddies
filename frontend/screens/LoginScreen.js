@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from  "react"
 import {SafeAreaView, View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from "react-native"
-import loginField from "../components/LoginField";
+import { useNavigation } from "@react-navigation/native";
+import LoginField from "../components/LoginField";
 import * as Font from 'expo-font';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-const loginScreen = () => {
+const LoginScreen = () => {
     const [fontLoaded, setFontLoaded] = useState(false);
     const loadFonts = async () => {
         await Font.loadAsync({
@@ -17,39 +18,52 @@ const loginScreen = () => {
       useEffect(() => {
         loadFonts(); 
       }, []);
+
+    const navigation = useNavigation();
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [register, setRegister] = useState(false);
+
+    const handleLogin = () => {
+        setLoggedIn(true);
+        navigation.navigate('App');
+      };
+    const handelRegister = () => {
+        setRegister(true);
+        navigation.navigate("Register")
+    }
     
     return (
         <SafeAreaView style={styles.container}>
             <View style={{paddingHorizontal: 25}}>
             <View style={styles.bodyContainer}>
-            <Image source={require("frontend/Bilder/inLoginPicture.png")} style={styles.image}/>
+            <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/inLoginPicture.png")} style={styles.image}/>
             </View>
             {fontLoaded &&<Text style={styles.loginText}>Login</Text>}
-            <loginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address"/>
-            <loginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} 
+            <LoginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address"/>
+            <LoginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} 
             inputType={"password"} fieldButtonLabel={"Forgot?"} fieldButtonFunction={() => {}}/>
 
-            <TouchableOpacity onPress={() => {}} style={styles.loginButton}>
+            <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
                 {fontLoaded &&<Text style={styles.loginButtonText}>Login</Text>}
             </TouchableOpacity>
             {fontLoaded &&<Text style={styles}>Or, login with...</Text>}
 
             <View style={{flexDirection: "row", justifyContent: "space-between", marginBottom: 30}}>
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("frontend/Bilder/GoogleLogo.png")} style={styles.logo}/>
+                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/GoogleLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("frontend/Bilder/TwitterLogo.jpeg")} style={styles.logo}/>
+                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/TwitterLogo.jpeg")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("frontend/Bilder/FacebookLogo.png")} style={styles.logo}/>
+                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/FacebookLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
             </View>
             <View style={{flexDirection: "row", justifyContent: "center", marginBottom: 30}}>
             {fontLoaded &&<Text>New to SkiBuddies? </Text>}
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={handelRegister}>
                 {fontLoaded &&<Text>Register</Text>}
             </TouchableOpacity>
             </View>
@@ -70,7 +84,6 @@ const styles = StyleSheet.create({
     image: {
         width: 300,
         height: 300,
-        transform: [{rotate: "-5deg"}]
     },
     loginText: {
         fontFamily: "Roboto-Regular",
@@ -106,10 +119,11 @@ const styles = StyleSheet.create({
         fontFamily: "Roboto-Regular"
     },
     footerText: {
-        textAlign:"center",
+        textAlign: "center",
         color: "#D3D3D3",
         marginBottom: 30,
-        fontFamily: "Roboto-Regular"
+        fontFamily: "Roboto-Regular",
+        fontSize: 12
     },
     logoContainer: {
         borderColor: "#D3D3D3",
@@ -129,4 +143,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default loginScreen;
+export default LoginScreen;

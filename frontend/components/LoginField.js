@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {View, Text,TouchableOpacity, TextInput, StyleSheet} from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
- export default function loginField({ label, icon, inputType, keyboardType, fieldButtonLabel, fieldButtonFunction }) {
+ export default function LoginField({ label, icon, inputType, keyboardType, fieldButtonLabel, fieldButtonFunction }) {
     const [fontLoaded, setFontLoaded] = useState(false);
     const loadFonts = async () => {
         await Font.loadAsync({

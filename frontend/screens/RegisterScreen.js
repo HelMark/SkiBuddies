@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from  "react"
-import {SafeAreaView, View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from "react-native"
+import {SafeAreaView, View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView} from "react-native"
 import * as Font from 'expo-font';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import loginField from "../components/LoginField";
+import LoginField from "../components/LoginField";
+import DatePicker from "react-native-date-picker";
+import { useNavigation } from '@react-navigation/native';
+
 
 const RegisterScreen = () => {
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -17,45 +20,79 @@ const RegisterScreen = () => {
       useEffect(() => {
         loadFonts(); 
       }, []);
+    const  [date, setDate] = useState(new Date())
+    const [open, setOpen] = useState(false)
+    const [dobLabel, setDobLabel] = useState("Date of Birth")
+
+    const navigation = useNavigation();
+    const [registered, setRegistered] = useState(false);
+
+    const handleRegister = () => {
+        setRegistered(true);
+        navigation.navigate('Login');
+      };
     
+
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{paddingHorizontal: 25}}>
+            <ScrollView showsHorizontalScrollIndicator={false} style={{paddingHorizontal: 25}}>
             <View style={styles.bodyContainer}>
-            <Image source={require("frontend/Bilder/RegisterPicture.png")} style={styles.image}/>
+            <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/RegisterPicture.png")} style={styles.image}/>
             </View>
+
             {fontLoaded &&<Text style={styles.loginText}>Register</Text>}
-
-            <loginField label={"Full Name"} icon={<Ionicons name="person-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />}/>
-            <loginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address"/>
-            <loginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} inputType={"password"}/>
-            <loginField label={"Confirm Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} inputType={"password"}/>
-
-            <TouchableOpacity onPress={() => {}} style={styles.loginButton}>
-                {fontLoaded &&<Text style={styles.loginButtonText}>Register</Text>}
-            </TouchableOpacity>
-            {fontLoaded &&<Text style={styles}>Or, login with...</Text>}
-
             <View style={{flexDirection: "row", justifyContent: "space-between", marginBottom: 30}}>
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("frontend/Bilder/GoogleLogo.png")} style={styles.logo}/>
+                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/GoogleLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("frontend/Bilder/TwitterLogo.jpeg")} style={styles.logo}/>
+                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/TwitterLogo.jpeg")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("frontend/Bilder/FacebookLogo.png")} style={styles.logo}/>
+                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/FacebookLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
             </View>
+            {fontLoaded &&<Text style={styles}>Or, Register with Email...</Text>}
+
+            <LoginField label={"Full Name"} icon={<Ionicons name="person-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />}/>
+            <LoginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address"/>
+            <LoginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} inputType={"password"}/>
+            <LoginField label={"Confirm Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} inputType={"password"}/>
+
+            <View style={styles.textInputContainer}>
+                <Ionicons name="calendar-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />
+                <TouchableOpacity onPress={() => setOpen(true)}>
+                    <Text style={styles.dateOfBirthText}>{dobLabel}</Text>
+                </TouchableOpacity>
+            </View>
+            <DatePicker 
+            modal
+            open={open}
+            date={date}
+            mode={"date"}
+            maximumDate={new Date("2022-01-01")}
+            minimumDate={new Date("1900-01-01")}
+            onConfirm ={(date) => {
+                setOpen(false)
+                setImmediate(date)
+                setDobLabel(date.toDateString())
+                }}
+                onCancel={() => {
+                    setOpen(false)}}
+            />
+            <TouchableOpacity onPress={handleRegister} style={styles.loginButton}>
+                {fontLoaded &&<Text style={styles.loginButtonText}>Register</Text>}
+            </TouchableOpacity>
+
             <View style={{flexDirection: "row", justifyContent: "center", marginBottom: 30}}>
             {fontLoaded &&<Text>Already registered? </Text>}
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={handleRegister}>
                 {fontLoaded &&<Text>Login</Text>}
             </TouchableOpacity>
             </View>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -72,7 +109,6 @@ const styles = StyleSheet.create({
     image: {
         width: 300,
         height: 300,
-        transform: [{rotate: "-5deg"}]
     },
     loginText: {
         fontFamily: "Roboto-Regular",
@@ -128,6 +164,12 @@ const styles = StyleSheet.create({
         color: "#0096FF",
         fontWeight: "Bold",
         fontFamily: "Roboto-Regular"
+    },
+    dateOfBirthText: {
+        color: "#D3D3D3",
+        fontFamily: "Roboto-Regular",
+        marginLeft: 5,
+        marginTop: 5,
     }
 })
 
