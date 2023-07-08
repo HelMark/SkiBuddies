@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View, TextInput, TouchableOpacity, StyleSheet, Text, ScrollView } from "react-native"
+import { View, TextInput, StyleSheet, FlatList, TouchableOpacity, Text } from "react-native";
 
     const mountainList = [
         { id: 1, name: "Galdhøpiggen" },
@@ -104,76 +104,90 @@ import {View, TextInput, TouchableOpacity, StyleSheet, Text, ScrollView } from "
       ];
       
       const DestinationSearchBar = () => {
-        const[searchInput, setSearchInput] = useState("");
-        const[filteredMountains, setFilteredMountains] = useState([]);
-
+        const [searchInput, setSearchInput] = useState("");
+        const [filteredMountains, setFilteredMountains] = useState([]);
+        const [isFocused, setIsFocused] = useState(false);
+      
         const handleSearchInputChange = (input) => {
-            setSearchInput(input);
-            if(input.length > 3) {
-                const filtered = mountainList.filter((mountain) => 
-                    mountain.name.toLowerCase().includes(input.toLowerCase())
-                );
-                setFilteredMountains(filtered);
-            } else {
-                setFilteredMountains([]) 
-            }
-        };
-        const handleMountainSelection = (mountain) => {
-            setSearchInput(mountain.name);
+          setSearchInput(input);
+          if (input.length > 3) {
+            const filtered = mountainList.filter((mountain) =>
+              mountain.name.toLowerCase().includes(input.toLowerCase())
+            );
+            setFilteredMountains(filtered);
+          } else {
             setFilteredMountains([]);
+          }
+        };
+      
+        const handleMountainSelection = (mountain) => {
+          setSearchInput(mountain.name);
+          setFilteredMountains([]);
         };
 
+        const handleFocus=() => {
+          setIsFocused(true)
+        }
+        const handleBlur = () => {
+          setIsFocused(false)
+        }
+      
         return (
-            <View style={styles.container}>
-                <TextInput
-                style={styles.searchInput}
-                value={searchInput}
-                onChangeText={handleSearchInputChange}
-                placeholder="Search for your destination..."/>
-                {filteredMountains.length> 0 && (
-                    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContent}>
-                        {filteredMountains.map((mountain) =>(
-                            <TouchableOpacity
-                            key={mountain.id}
-                            style={styles.recommendationItem}
-                            onPress={() => handleMountainSelection(mountain)}>
-                                <Text>{mountain.name}</Text>
-                            </TouchableOpacity>
-                        ))}
-                    </ScrollView>
-                )}
-            </View>
-        )
-      }
-
+          <View style={styles.container}>
+            <TextInput
+              style={[styles.input, isFocused && styles.inputFocused]} 
+              placeholder="Search destination..."
+              value={searchInput}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onChangeText={handleSearchInputChange}
+            />
+            <FlatList
+              style={styles.resultsContainer}
+              data={filteredMountains}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.resultItem}
+                  onPress={() => handleMountainSelection(item)}
+                >
+                  <Text style={styles.resultItemText}>{item.name}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        );
+      };
+      
       const styles = StyleSheet.create({
         container: {
-            flex: 1,
-            padding: 16
+          alignItems: "center",
+          flex: 1
         },
-        searchInput:{
-            height: 40,
-            borderColor: "#D3D3D3",
-            borderWidth: 1,
-            paddingHorizontal: 10,
-            marginBottom: 10,
-            right: 15
+        input: {
+          width: "90%",
+          height: 40,
+          borderWidth: 2,
+          borderColor: "#D3D3D3",
+          borderRadius: 5,
+          paddingHorizontal: 10,
+          marginBottom: 10,
         },
-        scrollContainer: {
-            maxHeight: 80,
-            borderWidth: 1,
-            borderColor: "#D3D3D3",
-            marginBottom: 10,
-            right: 15
+        resultsContainer: {
+          width: "90%",
+          maxHeight: 100,
         },
-        scrollContent: {
-            flexGrow: 1
-          },
-        recommendationItem: {
-            paddingVertical: 8,
-            paddingHorizontal: 10,
-            borderBottomColor: "#D3D3D3",
-            borderBottomWidth: 1,
+        resultItem: {
+          paddingVertical: 10,
+          borderBottomWidth: 1,
+          borderBottomColor: "#D3D3D3D3",
+        },
+        resultItemText: {
+          fontSize: 16,
+        },
+        inputFocused: {
+          borderColor: "#0096FF"
         }
-      })
+      });
+      
       export default DestinationSearchBar;
