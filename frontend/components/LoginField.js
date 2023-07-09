@@ -34,7 +34,7 @@ import * as Font from 'expo-font';
     textInputContainer: {
         flexDirection: "row", 
         borderBottomColor: "#0096FF", 
-        borderWidth: 1, 
+        borderBottomWidth: 1, 
         paddingBottom: 8,
         marginBottom: 25
     },

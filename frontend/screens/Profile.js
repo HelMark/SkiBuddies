@@ -194,13 +194,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         marginRight: 8,
         alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-        width: 0,
-        height: 2,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
         elevation: 2
     },
     selectedMenuItem: {

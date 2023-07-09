@@ -1,34 +1,41 @@
-import {Text, Platform, View} from "react-native";
-import {Buddies, Discover, Profile, Chat, Weather} from "./screens";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { Text, Platform, View } from "react-native";
+import { Buddies, Discover, Profile, Chat, Weather } from "./screens";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome5 } from '@expo/vector-icons'; 
+import { FontAwesome5 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import LoginScreen from "./screens/LoginScreen"
 import RegisterScreen from "./screens/RegisterScreen"
 
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const AppTabs = () => {
-  const screenOptions = {
-    tabBarShowLabel: false,
-    headerShown: false,
-    tabBarStyle: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      left: 0,
-      elevation: 0,
-      height: 90,
-      background: '#fff',
-    },
-  };
+const screenOptions = {
+  tabBarShowLabel: false,
+  headerShown: true,
+  tabBarStyle: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    left: 0,
+    elevation: 0,
+    height: 90,
+    background: "#fff",
+  },
+};
 
+const screenNames = {
+  Buddies: "Buddies",
+  Weather: "Weather",
+  Discover: "Discover",
+  Profile: "Profile",
+  Chat: "Chat",
+};
+
+const AppTabs = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
@@ -36,13 +43,20 @@ const AppTabs = () => {
         component={Buddies}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <FontAwesome5
                 name="skiing-nordic"
                 size={30}
-                color={focused ? '#0096FF' : '#D3D3D3'}
+                color={focused ? "#0096FF" : "#D3D3D3"}
               />
-              <Text style={{ fontSize: 13, color: 'black' }}>BUDDIES</Text>
+              <Text style={{ fontSize: 13, color: "black" }}>
+                {screenNames.Buddies}
+              </Text>
             </View>
           ),
         }}
@@ -52,13 +66,20 @@ const AppTabs = () => {
         component={Weather}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <MaterialCommunityIcons
                 name="snowflake-alert"
                 size={30}
-                color={focused ? '#0096FF' : '#D3D3D3'}
+                color={focused ? "#0096FF" : "#D3D3D3"}
               />
-              <Text style={{ fontSize: 13, color: 'black' }}>WEATHER</Text>
+              <Text style={{ fontSize: 13, color: "black" }}>
+                {screenNames.Weather}
+              </Text>
             </View>
           ),
         }}
@@ -70,21 +91,21 @@ const AppTabs = () => {
           tabBarIcon: ({ focused }) => (
             <View
               style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: '#FFFFFF',
-                borderColor: '#0096FF',
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#FFFFFF",
+                borderColor: "#0096FF",
                 borderWidth: 3,
-                width: Platform.OS == 'ios' ? 70 : 80,
-                height: Platform.OS == 'ios' ? 70 : 80,
-                top: Platform.OS == 'ios' ? -10 : -20,
-                borderRadius: Platform.OS == 'ios' ? 35 : 40,
+                width: Platform.OS == "ios" ? 70 : 80,
+                height: Platform.OS == "ios" ? 70 : 80,
+                top: Platform.OS == "ios" ? -10 : -20,
+                borderRadius: Platform.OS == "ios" ? 35 : 40,
               }}
             >
               <FontAwesome5
                 name="mountain"
                 size={30}
-                color={focused ? '#0096FF' : '#D3D3D3'}
+                color={focused ? "#0096FF" : "#D3D3D3"}
               />
             </View>
           ),
@@ -95,13 +116,20 @@ const AppTabs = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <FontAwesome
                 name="user-o"
                 size={30}
-                color={focused ? '#0096FF' : '#D3D3D3'}
+                color={focused ? "#0096FF" : "#D3D3D3"}
               />
-              <Text style={{ fontSize: 13, color: 'black' }}>PROFILE</Text>
+              <Text style={{ fontSize: 13, color: "black" }}>
+                {screenNames.Profile}
+              </Text>
             </View>
           ),
         }}
@@ -111,13 +139,20 @@ const AppTabs = () => {
         component={Chat}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <Entypo
                 name="chat"
                 size={30}
-                color={focused ? '#0096FF' : '#D3D3D3'}
+                color={focused ? "#0096FF" : "#D3D3D3"}
               />
-              <Text style={{ fontSize: 13, color: 'black' }}>CHAT</Text>
+              <Text style={{ fontSize: 13, color: "black" }}>
+                {screenNames.Chat}
+              </Text>
             </View>
           ),
         }}
@@ -129,16 +164,27 @@ const AppTabs = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="App" component={AppTabs} />
+      <Stack.Navigator screenOptions={{ headerShown: false, headerLeft: null }}>
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="App"
+          component={AppTabs}
+          options={() => ({
+            headerShown: false,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 export default App;
-
-
-
