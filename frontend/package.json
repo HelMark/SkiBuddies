@@ -23,6 +23,7 @@
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-deck-swiper": "^2.0.14",
+    "react-native-gifted-chat": "^2.4.0",
     "react-native-image-picker": "^5.4.0",
     "react-native-switch": "^1.5.1",
     "react-native-vector-icons": "^9.2.0"

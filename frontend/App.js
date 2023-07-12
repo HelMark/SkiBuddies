@@ -1,4 +1,4 @@
-import { Text, Platform, View } from "react-native";
+import { Text, Platform, View, TouchableOpacity } from "react-native";
 import { Buddies, Discover, Profile, Chat, Weather } from "./screens";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,6 +9,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import LoginScreen from "./screens/LoginScreen"
 import RegisterScreen from "./screens/RegisterScreen"
+import Conversation from './components/Conversation';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -182,6 +184,16 @@ const App = () => {
             headerShown: false,
           })}
         />
+        <Stack.Screen name="Conversation" component={Conversation} 
+          options={({navigation, route}) => ({
+          headerShown: true,
+          title: route.params?.conversationName || "",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <MaterialIcons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })} />
       </Stack.Navigator>
     </NavigationContainer>
   );

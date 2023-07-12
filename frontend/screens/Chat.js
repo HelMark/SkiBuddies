@@ -4,8 +4,10 @@ import SearchBar from '../components/SearchBar';
 import { MaterialIcons } from '@expo/vector-icons';
 import NewGroupComponent from '../components/NewGroup';
 import * as Font from 'expo-font';
+import { useNavigation } from "@react-navigation/native";
 
 export default function Chat() {
+    const navigation = useNavigation();
     const [fontLoaded, setFontLoaded] = useState(false);
     const loadFonts = async () => {
         await Font.loadAsync({
@@ -29,7 +31,7 @@ export default function Chat() {
      };
 
     const handleConversationPress = (conversation) =>{
-        //Logic for navigating into a chat
+        navigation.navigate("Conversation", {conversationName: conversation.name})
     };
 
     const handleCloseModal = () => {
