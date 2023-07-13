@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, TextInput,} from 'react-native';
+import { View, TextInput} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 const SearchBar = ({onSearch, placeholder}) => {
     const [searchText, setSearchText] = useState('');
@@ -20,18 +21,20 @@ const SearchBar = ({onSearch, placeholder}) => {
             handleSearch();
         }
     }
-    const inputStyles = {
-        height: 40,
-        borderWidth: 3,
+    const containerStyles = {
+        flexDirection: "row",
+        borderWidth: 2,
         borderRadius: 10,
         paddingHorizontal: 10,
-        borderColor: isFocused ? "#0096FF" : "#D3D3D3",
-    };
+        borderColor: isFocused ? "#0096FF" : "#D3D3D3", // Conditionally set the border color
+        height: 40,
+      };
 
     return (
-        <View style= {{width: "100%"}}>
+        <View style={containerStyles}>
+            <FontAwesome name="search" size={22} color="#D3D3D3" style={{marginRight: 8, marginTop: 5}}/>
             <TextInput 
-            style={inputStyles}
+            style={{flex: 1}}
             placeholder= {placeholder}
             value={searchText}
             onChangeText= {text => setSearchText(text)}
@@ -43,4 +46,5 @@ const SearchBar = ({onSearch, placeholder}) => {
         </View>
     );
 };
+
 export default SearchBar;
