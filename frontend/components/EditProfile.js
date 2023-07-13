@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {View, StyleSheet, Pressable, Text, TextInput, Alert, ScrollView } from "react-native";
 import { Switch } from "react-native-switch";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons,FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import EditImages from "./EditImages";
+import LoginField from "./LoginField";
 import * as Font from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
 export default function EditProfile({onClose}){
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -139,6 +141,11 @@ export default function EditProfile({onClose}){
         setShowModal(false);
     }
 
+    const navigation = useNavigation();
+    const handleLogOut = () => {
+        navigation.navigate("Login")
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -149,42 +156,13 @@ export default function EditProfile({onClose}){
         <View style={{width: 40}}></View>
         </View>
             <ScrollView style={styles.content}> 
-                {fontLoaded &&<Text style={styles.label}>First Name:</Text>}
-                <TextInput
-                style={styles.input}
-                value={firstName}
-                onChangeText={handleFirstNameChange}/>
-                {fontLoaded &&<Text style={styles.label}>Surname:</Text>}
-                <TextInput
-                style={styles.input}
-                value={surname}
-                onChangeText={handleSurnameChange}/>
-                {fontLoaded &&<Text style={styles.label}>Email: </Text>}
-                <TextInput
-                style={styles.input}
-                value={email}
-                onChangeText={handleEmailChange} />
-                {fontLoaded &&<Text style={styles.label}>Hometown:</Text>}
-                <TextInput
-                style={styles.input}
-                value={hometown}
-                onChangeText={handleHometownChange}/>
-                {fontLoaded &&<Text style={styles.label}>Hobbies:</Text>}
-                <TextInput
-                style={styles.input}
-                value={hobbies}
-                onChangeText={handleHobbiesChange}/>
-                {fontLoaded &&<Text style={styles.label}>New Password;</Text>}
-                <TextInput 
-                style={styles.input}
-                value={password}
-                onChangeText={handlePasswordChange}/>
-                {fontLoaded &&<Text style={styles.label}>Confirm Password:</Text>}
-                <TextInput 
-                style={styles.input}
-                value={passwordConfirmation}
-                onChangeText={handlePasswordConfirmationChange}
-                secureTextEntry/>
+                <LoginField label={"First Name"} icon={<Ionicons name="person-outline" size={20} color="#D3D3D3" style={{marginRight: 5}}/>} onChangeText={handleFirstNameChange} value={firstName}/>
+                <LoginField label={"Last Name"} icon={<Ionicons name="person-outline" size={20} color="#D3D3D3" style={{marginRight: 5}}/>} onChangeText={handleSurnameChange} value={surname}/>
+                <LoginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address" onChangeText={handleEmailChange} value={email}/>
+                <LoginField label={"Hometown"} icon={<Ionicons name="home" size={20} color="#D3D3D3" style={{marginRight: 5}} />} onChangeText={handleHometownChange} value={hometown}/>
+                <LoginField label={"Hobbies"} icon={<FontAwesome5 name="skiing" size={20} color="#D3D3D3" style={{marginRight: 5}} />} onChangeText={handleHobbiesChange} value={hobbies}/>
+                <LoginField  label={"Password"} inputType={"password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}}/>} onChangeText={handlePasswordChange} value={password}/>
+                <LoginField label={"Confirm Password"} inputType={"password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}}/>} onChangeText={handlePasswordConfirmationChange} value={passwordConfirmation}/>
                 {fontLoaded &&<Text style={styles.ProfileImagesText}>Profile Images:</Text>}
                 <EditImages/>
                 <View style={styles.switchContainer}>
@@ -212,6 +190,11 @@ export default function EditProfile({onClose}){
                     </Text>
                 )}
                 />
+                </View>
+                <View style={styles.logOutContainer}>
+                    <Pressable style={styles.logOutButton} onPress={handleLogOut}>
+                        {fontLoaded &&<Text style={styles.saveButtonText}>Log out</Text>}
+                    </Pressable>
                 </View>
             </ScrollView>
             <View style={styles.footer}>
@@ -330,5 +313,24 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         color: "#0096FF", 
         fontFamily: "Roboto-Regular"
+    },
+    logOutContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        paddingBottom: 10
+    },
+    logOutButton: {
+        backgroundColor: "#0096FF",
+        paddingHorizontal: 40,
+        paddingVertical: 10,
+        borderRadius: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+        width: 2,
+        height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 4
     }
 })

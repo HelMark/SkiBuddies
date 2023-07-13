@@ -3,7 +3,7 @@ import {View, Text,TouchableOpacity, TextInput, StyleSheet} from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
- export default function LoginField({ label, icon, inputType, keyboardType, fieldButtonLabel, fieldButtonFunction }) {
+ export default function LoginField({ label, icon, inputType, keyboardType, fieldButtonLabel, fieldButtonFunction, onChangeText, value }) {
     const [fontLoaded, setFontLoaded] = useState(false);
     const loadFonts = async () => {
         await Font.loadAsync({
@@ -20,9 +20,9 @@ import * as Font from 'expo-font';
         <View style={styles.textInputContainer}>
             {icon}
             {inputType =="password" ? (
-            <TextInput placeholder={label} style={{flex: 1}} secureTextEntry={true} keyboardType={keyboardType} />
+            <TextInput placeholder={label} style={{flex: 1}} secureTextEntry={true} keyboardType={keyboardType} onChangeText={onChangeText} value={value}/>
             ):(
-            <TextInput placeholder={label} style={{flex: 1}} keyboardType={keyboardType}/>
+            <TextInput placeholder={label} style={{flex: 1}} keyboardType={keyboardType} onChangeText={onChangeText} value={value}/>
             ) }
             <TouchableOpacity onPress={fieldButtonFunction}>
                 {fontLoaded &&<Text style={{color: "#0096FF", fontWeight: "bold"}}>{fieldButtonLabel}</Text>}
