@@ -166,16 +166,16 @@ const AppTabs = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false, headerLeft: null }}>
+      <Stack.Navigator screenOptions={{ headerShown: false, headerLeft: null}}>
         <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: false}}
         />
         <Stack.Screen
           name="Register"
           component={RegisterScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: false}}
         />
         <Stack.Screen
           name="App"
@@ -187,6 +187,7 @@ const App = () => {
         <Stack.Screen name="Conversation" component={Conversation} 
           options={({navigation, route}) => ({
           headerShown: true,
+          
           title: route.params?.conversationName || "",
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>

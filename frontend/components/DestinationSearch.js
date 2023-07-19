@@ -162,7 +162,8 @@ import { View, TextInput, StyleSheet, FlatList, TouchableOpacity, Text } from "r
       const styles = StyleSheet.create({
         container: {
           alignItems: "center",
-          flex: 1
+          flex: 1,
+          zIndex: 1
         },
         input: {
           width: "90%",
@@ -175,7 +176,8 @@ import { View, TextInput, StyleSheet, FlatList, TouchableOpacity, Text } from "r
         },
         resultsContainer: {
           width: "90%",
-          maxHeight: 100,
+          backgroundColor: "#FFFFFF",
+          position: "relative",
         },
         resultItem: {
           paddingVertical: 10,

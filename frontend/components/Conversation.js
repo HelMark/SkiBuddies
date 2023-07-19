@@ -44,23 +44,43 @@ export default function Conversation() {
         </View>
         )
     }
+
+    const renderSend = (props) => {
+      const { text } = props;
+    return (
+      <View style={styles.sendContainer}>
+        <Text
+          style={styles.sendText}
+          onPress={() => {
+            const message = [{ text, user: props.user }];
+            onSend(message);
+          }}
+        >
+          Send
+        </Text>
+      </View>
+    );
+  };
+
     const renderInputToolbar = (props) => {
         return (
           <InputToolbar
             {...props}
             containerStyle={styles.inputToolbarContainer}
-            primaryStyle={styles.inputToolbarPrimary}
+            
           />
         );
       };
     
       const renderComposer = (props) => {
         return (
+          <View style={styles.composerContainer}>
           <Composer
             {...props}
             textInputStyle={styles.composerTextInput}
             placeholderTextColor="#D3D3D3"
           />
+          </View>
         );
       };
 
@@ -73,6 +93,7 @@ export default function Conversation() {
             _id: 1, //This sets how is "me"
         }}
         renderBubble={renderBubble}
+        renderSend={renderSend}
         renderInputToolbar={renderInputToolbar}
         renderComposer={renderComposer}
         listViewProps={{
@@ -97,9 +118,23 @@ const styles= StyleSheet.create({
         paddingHorizontal: 12,
         borderRadius: 10,
         backgroundColor: "#F4F4F4",
-        bottom: 7
+        bottom: 7,
       },
       listView: {
-        marginBottom: 22
-      }
+        marginBottom: 40
+      },
+      sendContainer: {
+          alignSelf: "flex-end",
+          marginBottom: 20,
+          marginLeft: 10,
+          marginRight: 5
+        },
+        sendText: {
+          color: "#0096FF",
+          fontWeight: "bold",
+          fontSize: 18
+        },
+        composerContainer: {
+          flex: 1
+        },
 })

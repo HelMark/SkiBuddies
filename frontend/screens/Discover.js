@@ -1,4 +1,4 @@
-import {View, Modal, TouchableOpacity, Dimensions, PanResponder, StyleSheet, Image, Text, Animated } from 'react-native';
+import {View, Modal, TouchableOpacity, Dimensions, StyleSheet, Image, Animated, RefreshControl, SafeAreaView, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import SearchBar from '../components/SearchBar';
 import NewPost from '../components/NewPost';
@@ -36,28 +36,25 @@ const handleSwipeUp = () => {
     setImages([...shuffledImages]);
 };
 
-const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: (_, gestureState) => {
-        return gestureState.dy < -50 && Math.abs(gestureState.dx) < 50;
-    },
-    onPanResponderRelease: () => {
+const [refreshing, setRefreshing] = React.useState(false);
+const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
         handleSwipeUp();
-    },
-});
-
+        setRefreshing(false);
+    }, 500);
+  }, []);
 return (
-    <View style={styles.container}>
-        <TouchableOpacity onPress={handleSwipeUp} style={{zIndex: 1}}>
-        <Ionicons name="refresh-circle-outline" size={60} color="#0096FF" style={styles.refreshButton}/>
-        </TouchableOpacity>
-        <Animated.View style={{transform : [{translateY: swipeUpGesture}]}}>
+    <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollView} refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/> }>
         <View style={styles.gridContainer}>
             {images.map((image) => (
                 <Image key={image.id} source={image.source} style={styles.image}/>
             ))}
         </View>
-        </Animated.View>
-    </View>
+        </ScrollView>
+    </SafeAreaView>
     );
 };
 
@@ -82,7 +79,7 @@ const Discover = () => {
             <TouchableOpacity style={{zIndex:1}} onPress={() => {
                 setShowModal(true)
                 handleNewPostPress(newPost)}}>
-                <Ionicons name = "ios-add-circle-outline" size={90} color="#0096FF" style={styles.newPostButton}/>
+                <Ionicons name = "ios-add-circle-outline" size={90} color="#D3D3D3" style={styles.newPostButton}/>
             </TouchableOpacity>
       
             <Modal visible={showModal} onRequestClose={handleCloseModal}>
@@ -109,7 +106,7 @@ const styles = StyleSheet.create ({
     },
     image : {
         width: windowWidth/3.1,
-        height: windowWidth/2.50,
+        height: windowWidth/2.54,
         margin: 1
     },
     modalContainer: {
@@ -130,20 +127,10 @@ const styles = StyleSheet.create ({
         shadowRadius: 2,
         elevation: 2
     },
-    refreshButton: {
-        position: "absolute",
-        zIndex: 1,
-        top : screenHeight*0.605, 
-        left: windowWidth*0.60,
-        shadowColor: "#000",
-        shadowOffset: {
-        width: 0,
-        height: 2,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        elevation: 2
-    }
+    scrollView: {
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
 })
 
 export default Discover;

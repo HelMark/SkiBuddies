@@ -6,6 +6,7 @@ import EditImages from "./EditImages";
 import LoginField from "./LoginField";
 import * as Font from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
+import HobbiePicker from "./HobbiePicker";
 
 export default function EditProfile({onClose}){
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -160,7 +161,7 @@ export default function EditProfile({onClose}){
                 <LoginField label={"Last Name"} icon={<Ionicons name="person-outline" size={20} color="#D3D3D3" style={{marginRight: 5}}/>} onChangeText={handleSurnameChange} value={surname}/>
                 <LoginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address" onChangeText={handleEmailChange} value={email}/>
                 <LoginField label={"Hometown"} icon={<Ionicons name="home" size={20} color="#D3D3D3" style={{marginRight: 5}} />} onChangeText={handleHometownChange} value={hometown}/>
-                <LoginField label={"Hobbies"} icon={<FontAwesome5 name="skiing" size={20} color="#D3D3D3" style={{marginRight: 5}} />} onChangeText={handleHobbiesChange} value={hobbies}/>
+                <HobbiePicker  onChangeText={handleHobbiesChange} value={hobbies}/>
                 <LoginField  label={"Password"} inputType={"password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}}/>} onChangeText={handlePasswordChange} value={password}/>
                 <LoginField label={"Confirm Password"} inputType={"password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}}/>} onChangeText={handlePasswordConfirmationChange} value={passwordConfirmation}/>
                 {fontLoaded &&<Text style={styles.ProfileImagesText}>Profile Images:</Text>}

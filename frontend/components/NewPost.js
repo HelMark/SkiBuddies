@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Pressable, Text, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import DestinationSearchBar from "./DestinationSearch";
-import NewPostImages from "./NewPostImages";
+import PictureSwiper from "./PictureSwiper";
 import PostInfo from "./PostInfo";
 import * as Font from 'expo-font';
 
@@ -51,7 +51,7 @@ export default function NewPost({ onClose }) {
       </View>
       <View style={styles.bodyContainer}>
         <DestinationSearchBar />
-        <NewPostImages />
+        <PictureSwiper />
         <View style={styles.postInfoContainer}>
           <PostInfo 
             label="Avalanche Danger:" 

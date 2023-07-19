@@ -2,8 +2,9 @@ import React, {useState, useEffect} from  "react"
 import {SafeAreaView, View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Platform} from "react-native"
 import * as Font from 'expo-font';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import LoginField from "../components/LoginField";
+import HobbiePicker from "../components/HobbiePicker";
 import DateTimePicker from "@react-native-community/datetimepicker"
 import { useNavigation } from '@react-navigation/native';
 
@@ -81,7 +82,7 @@ const RegisterScreen = () => {
             <LoginField label={"Hometown"} icon={<Ionicons name="home" size={20} color="#D3D3D3" style={{marginRight: 5}} />}/>
             <LoginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} inputType={"password"}/>
             <LoginField label={"Confirm Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} inputType={"password"}/>
-            <LoginField label={"Hobbies"} icon={<FontAwesome5 name="skiing" size={20} color="#D3D3D3" style={{marginRight: 5}} />}/>
+            <HobbiePicker />
             <View style={styles.textInputContainer}>
                 <Ionicons name="calendar-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />
                 <TouchableOpacity onPress={showDatePicker}>
