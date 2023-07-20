@@ -63,7 +63,8 @@ const PictureSwiper = () => {
 const styles = StyleSheet.create({
     container: {
         top: HEIGHT * -0.00001,
-        marginBottom: 10
+        marginBottom: 10,
+        alignSelf: "center"
     },
     wrap: {
         width: WIDTH * 0.75,

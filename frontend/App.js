@@ -9,7 +9,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import LoginScreen from "./screens/LoginScreen"
 import RegisterScreen from "./screens/RegisterScreen"
+import FriendsFeed from "./screens/FriendsFeed";
 import Conversation from './components/Conversation';
+import NewPost from "./screens/NewPost";
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
@@ -184,6 +186,14 @@ const App = () => {
             headerShown: false,
           })}
         />
+        <Stack.Screen name="FriendsFeed" component={FriendsFeed}
+          options={() => ({
+            headerShown: false
+          })}/>
+        <Stack.Screen  name = "NewPost" component={NewPost}
+        options={() => ({
+          headerShown: false
+        })}/>
         <Stack.Screen name="Conversation" component={Conversation} 
           options={({navigation, route}) => ({
           headerShown: true,

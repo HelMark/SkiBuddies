@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Pressable, Text, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import DestinationSearchBar from "./DestinationSearch";
-import PictureSwiper from "./PictureSwiper";
-import PostInfo from "./PostInfo";
+import { useNavigation } from "@react-navigation/native";
+import DestinationSearchBar from "../components/DestinationSearch";
+import PictureSwiper from "../components/PictureSwiper";
+import PostInfo from "../components/PostInfo";
 import * as Font from 'expo-font';
+
 
 const screenHeight = Dimensions.get('window').height;
 
-export default function NewPost({ onClose }) {
+export default function NewPost() {
   const [fontLoaded, setFontLoaded] = useState(false);
 
   const loadFonts = async () => {
@@ -21,9 +23,6 @@ export default function NewPost({ onClose }) {
     loadFonts(); 
   }, []);
 
-  const handlePressClose = () => {
-    onClose();
-  };
 
   const handleEnterPress =() =>{
     textInputRef.blur();
@@ -37,13 +36,17 @@ export default function NewPost({ onClose }) {
 
   const handlePressPost = () => {
     // logic for saving the post to the database
-    handlePressClose();
+    handleDiscoverPress();
   };
+  const navigation = useNavigation();
+  const handleDiscoverPress = () => {
+    navigation.navigate("Discover")
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={handlePressClose}>
+        <Pressable onPress={handleDiscoverPress}>
           <Ionicons name="md-arrow-back-sharp" size={50} color="#D3D3D3" style={styles.backButton} />
         </Pressable>
         {fontLoaded &&<Text style={styles.title}>New Post</Text>}
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
   backButton: {
     width: 40,
     marginTop: 20,
-    left: -40,
+    left: -10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular"
   },
   postInfoContainer: {
-    marginBottom: 20,
+    marginBottom: 0,
   },
   
 });

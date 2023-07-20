@@ -1,8 +1,9 @@
-import {View, Modal, TouchableOpacity, Dimensions, StyleSheet, Image, Animated, RefreshControl, SafeAreaView, ScrollView } from 'react-native';
-import React, {useState} from 'react';
+import {View,TouchableOpacity, Dimensions, StyleSheet, Image, RefreshControl, SafeAreaView, ScrollView, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
 import SearchBar from '../components/SearchBar';
-import NewPost from '../components/NewPost';
 import { Ionicons } from '@expo/vector-icons';
+import * as Font from "expo-font"
+import { useNavigationToNewPost, useNavigateToFriendsFeed } from "../components/NavigationHelper";
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -24,7 +25,6 @@ const DiscoverScreen = () => {
         {id: 12, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde13.jpeg")},
     ]);
 
-    const[swipeUpGesture] = useState(new Animated.Value(0));
 
 
 const handleSwipeUp = () => {
@@ -59,34 +59,36 @@ return (
 };
 
 const Discover = () => {
-    const [showModal, setShowModal] = useState(null);
-    const [newPost, setNewPost] = useState(null);
+    const [fontLoaded, setFontLoaded] = useState(false);
+    const loadFonts = async () => {
+        await Font.loadAsync({
+          'Roboto-Regular': require('../fonts/Roboto-Regular.ttf'),
+        });
+        setFontLoaded(true)
+      };
+    
+      useEffect(() => {
+        loadFonts(); 
+      }, []);
 
-     const handleNewPostPress = (newPost) => {
-        setNewPost(newPost);
-        setShowModal(true);
-     };
-     const handleSearch = (searchText) => {
+    const handleSearch = (searchText) => {
         //Logic for search for info destination
         console.log(searchText)
      };
-     const handleCloseModal = () => {
-        setShowModal(false);
-     };
+     const navigateToNewPost = useNavigationToNewPost();
+     const navigateToFriendsFeed = useNavigateToFriendsFeed();
+     
      return (
         <View style= {{flex:1, justifyContent: "center", alignItems: "center" }}>
             <SearchBar onSearch={handleSearch} placeholder= "Search for your destination..."/>
-            <TouchableOpacity style={{zIndex:1}} onPress={() => {
-                setShowModal(true)
-                handleNewPostPress(newPost)}}>
+            <TouchableOpacity style={{zIndex:1}} onPress={navigateToNewPost}>
                 <Ionicons name = "ios-add-circle-outline" size={90} color="#D3D3D3" style={styles.newPostButton}/>
             </TouchableOpacity>
-      
-            <Modal visible={showModal} onRequestClose={handleCloseModal}>
-                <View style={styles.modalContainer}>
-                <NewPost onClose={handleCloseModal} />
-                </View>
-            </Modal>
+            <View style={styles.FriendsFeedContainer}>
+            <TouchableOpacity onPress={navigateToFriendsFeed}>
+                {fontLoaded &&<Text style={styles.FriendsFeedText}>Friend's Post</Text>}
+            </TouchableOpacity>
+            </View>
             <DiscoverScreen/>
         </View>
      );
@@ -109,11 +111,6 @@ const styles = StyleSheet.create ({
         height: windowWidth/2.54,
         margin: 1
     },
-    modalContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
     newPostButton: {
         position: "absolute", 
         alignSelf: "center", 
@@ -131,6 +128,20 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
         justifyContent: 'center',
       },
+      FriendsFeedContainer: {
+        borderBottomColor: "#D3D3D3",
+        borderBottomWidth: 2,
+        position: "absolute",
+        right: windowWidth*0.14,
+        bottom: screenHeight*0.18,
+        zIndex: 1,
+      },
+    FriendsFeedText: {
+        fontFamily: "Roboto-Regular",
+        fontSize: 18,
+        color: "#D3D3D3",
+        fontWeight: "bold"
+    }
 })
 
 export default Discover;

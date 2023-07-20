@@ -163,7 +163,6 @@ import { View, TextInput, StyleSheet, FlatList, TouchableOpacity, Text } from "r
         container: {
           alignItems: "center",
           flex: 1,
-          zIndex: 1
         },
         input: {
           width: "90%",
@@ -176,8 +175,9 @@ import { View, TextInput, StyleSheet, FlatList, TouchableOpacity, Text } from "r
         },
         resultsContainer: {
           width: "90%",
-          backgroundColor: "#FFFFFF",
           position: "relative",
+          height: 200,
+          zIndex: 1
         },
         resultItem: {
           paddingVertical: 10,

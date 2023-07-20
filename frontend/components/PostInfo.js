@@ -38,7 +38,8 @@ export default PostInfo;
 const styles = StyleSheet.create({
     inputContainer: {
         top: screenHeight* -0.001,
-        marginBottom: 5
+        marginBottom: 5,
+        alignSelf: "center"
       },
       inputLabel: {
         fontSize: 16,
