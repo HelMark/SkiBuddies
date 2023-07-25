@@ -188,7 +188,8 @@ const App = () => {
         />
         <Stack.Screen name="FriendsFeed" component={FriendsFeed}
           options={() => ({
-            headerShown: false
+            headerShown: false,
+            
           })}/>
         <Stack.Screen  name = "NewPost" component={NewPost}
         options={() => ({

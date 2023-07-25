@@ -4,13 +4,15 @@ import SearchBar from '../components/SearchBar';
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from "expo-font"
 import { useNavigationToNewPost, useNavigateToFriendsFeed } from "../components/NavigationHelper";
-
+import axios from 'axios';
 
 const windowWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
+const API_ENDPOINT = "" //API URL
+
 const DiscoverScreen = () => {
-    const [images, setImages] = useState([ //Dummie values
+    const [images, setImages] = useState([ //Dummie values. Switch with: const [images, setImages] = useState([]);
         {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg")},
         {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde3.jpg")},
         {id: 3, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg")},
@@ -24,8 +26,6 @@ const DiscoverScreen = () => {
         {id: 11, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde12.jpeg")},
         {id: 12, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde13.jpeg")},
     ]);
-
-
 
 const handleSwipeUp = () => {
     const shuffledImages = [...images];
@@ -59,6 +59,15 @@ return (
 };
 
 const Discover = () => {
+    const fetchImages = async () => {
+        try {
+            const reponse = await axios.get("") //Path to images
+            setImages(reponse.data);
+        } catch {
+            console.error("Error fetching images:", error);
+        }
+    }
+
     const [fontLoaded, setFontLoaded] = useState(false);
     const loadFonts = async () => {
         await Font.loadAsync({
@@ -69,6 +78,7 @@ const Discover = () => {
     
       useEffect(() => {
         loadFonts(); 
+        //fetchImages();
       }, []);
 
     const handleSearch = (searchText) => {
@@ -108,7 +118,7 @@ const styles = StyleSheet.create ({
     },
     image : {
         width: windowWidth/3.1,
-        height: windowWidth/2.54,
+        height: windowWidth/2.48,
         margin: 1
     },
     newPostButton: {
