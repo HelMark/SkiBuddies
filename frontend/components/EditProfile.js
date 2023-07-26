@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {View, StyleSheet, Pressable, Text, TextInput, Alert, ScrollView } from "react-native";
 import { Switch } from "react-native-switch";
 import { Ionicons,FontAwesome5, MaterialIcons } from '@expo/vector-icons';
@@ -7,8 +7,11 @@ import LoginField from "./LoginField";
 import * as Font from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
 import HobbiePicker from "./HobbiePicker";
+import { AuthContext } from "../context/AuthContext";
+
 
 export default function EditProfile({onClose}){
+    const {logout} = useContext(AuthContext)
     const [fontLoaded, setFontLoaded] = useState(false);
 
     const[firstName, setFirstName] = useState("");
@@ -142,11 +145,6 @@ export default function EditProfile({onClose}){
         setShowModal(false);
     }
 
-    const navigation = useNavigation();
-    const handleLogOut = () => {
-        navigation.navigate("Login")
-    }
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -193,7 +191,7 @@ export default function EditProfile({onClose}){
                 />
                 </View>
                 <View style={styles.logOutContainer}>
-                    <Pressable style={styles.logOutButton} onPress={handleLogOut}>
+                    <Pressable style={styles.logOutButton} onPress={() => {logout()}}>
                         {fontLoaded &&<Text style={styles.saveButtonText}>Log out</Text>}
                     </Pressable>
                 </View>

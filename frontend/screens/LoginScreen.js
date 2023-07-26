@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from  "react"
+import React, {useState, useEffect, useContext} from  "react"
 import {SafeAreaView, View, Text, Image, StyleSheet, TextInput, TouchableOpacity} from "react-native"
 import { useNavigation } from "@react-navigation/native";
 import LoginField from "../components/LoginField";
 import * as Font from 'expo-font';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { AuthContext } from "../context/AuthContext";
 
 const LoginScreen = () => {
+    const {login} = useContext(AuthContext)
+
     const [fontLoaded, setFontLoaded] = useState(false);
     const loadFonts = async () => {
         await Font.loadAsync({
@@ -20,13 +23,8 @@ const LoginScreen = () => {
       }, []);
 
     const navigation = useNavigation();
-    const [loggedIn, setLoggedIn] = useState(false);
     const [register, setRegister] = useState(false);
 
-    const handleLogin = () => {
-        setLoggedIn(true);
-        navigation.navigate('App');
-      };
     const handelRegister = () => {
         setRegister(true);
         navigation.navigate("Register")
@@ -46,7 +44,7 @@ const LoginScreen = () => {
             <LoginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} 
             inputType={"password"} fieldButtonLabel={"Forgot?"} fieldButtonFunction={() => {}}/>
 
-            <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+            <TouchableOpacity onPress={() => {login()}} style={styles.loginButton}>
                 {fontLoaded &&<Text style={styles.loginButtonText}>Login</Text>}
             </TouchableOpacity>
 
