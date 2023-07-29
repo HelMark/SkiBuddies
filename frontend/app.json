@@ -27,7 +27,8 @@
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to add pictures to posts.",
         "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to select and upload photos."
-      }
+      },
+      "bundleIdentifier": "com.sigurhag.SkiBuddies"
     },
     "android": {
       "adaptiveIcon": {
@@ -37,6 +38,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fef74eca-4261-4210-b00f-87dfb82d69db"
+      }
     }
   }
 }

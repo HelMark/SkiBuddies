@@ -8,6 +8,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { AuthContext } from "../context/AuthContext";
 
 const LoginScreen = () => {
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+
     const {login} = useContext(AuthContext)
 
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -40,8 +43,8 @@ const LoginScreen = () => {
                 {fontLoaded &&<Text style={styles.LogoText}>SKIBUDDIES</Text>}
                 {fontLoaded &&<Text style={styles.loginText}>Login</Text>}
             </View>
-            <LoginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address"/>
-            <LoginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} />} 
+            <LoginField label={"Email Adress"} icon={<MaterialIcons name="alternate-email" size={20} color="#D3D3D3" style={{marginRight: 5 }} />} keyboardType="email-address" value={email} onChangeText={text => setEmail(text)}/>
+            <LoginField label={"Password"} icon={<Ionicons name="ios-lock-closed-outline" size={20} color="#D3D3D3" style={{marginRight: 5}} value={password} onChangeText={text => setPassword(text)}/>} 
             inputType={"password"} fieldButtonLabel={"Forgot?"} fieldButtonFunction={() => {}}/>
 
             <TouchableOpacity onPress={() => {login()}} style={styles.loginButton}>
