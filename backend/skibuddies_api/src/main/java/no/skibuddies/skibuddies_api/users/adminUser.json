@@ -1,0 +1,26 @@
+[
+    {
+        "userId": "u1Admin1",
+        "username": "admin",
+        "email": "admin@admin.com",
+        "hometown": "adminTown",
+        "pwd": "admin123",
+        "hobbies": [],
+        "dateOfBirth": "2023-07-14",
+        "isPrivate": true,
+        "follwers":[],
+        "follwoing":[]
+    },
+    {
+        "userId": "u1JhonDoe",
+        "username": "JhonDoe",
+        "email": "JhonDoe@Doe.com",
+        "hometown": "DoeTown",
+        "pwd": "JhonDoe123",
+        "hobbies": [],
+        "dateOfBirth": "2023-07-19",
+        "isPrivate": false,
+        "follwers":[],
+        "follwoing":[]
+    }
+]
