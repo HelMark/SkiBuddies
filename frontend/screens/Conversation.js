@@ -14,7 +14,7 @@ export default function Conversation() {
                 user: {
                     _id: 2,
                     name: "React Native",
-                    avatar: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg"),
+                    avatar: require("../Bilder//bilde4.jpeg"),
                 },
             }, {
                     _id: 2,
@@ -23,7 +23,7 @@ export default function Conversation() {
                     user: {
                       _id: 1,
                       name: "User",
-                      avatar: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde13.jpeg"),
+                      avatar: require("../Bilder/bilde13.jpeg"),
                     },
             },
         ]);
