@@ -53,22 +53,22 @@ const RegisterScreen = () => {
         <SafeAreaView style={styles.container}>
             <ScrollView showsHorizontalScrollIndicator={false} style={{paddingHorizontal: 25}}>
             <View style={styles.bodyContainer}>
-            <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/mountain-png.webp")} style={styles.image} resizeMode="contain"/>
+            <Image source={require("../Bilder/mountain-png.webp")} style={styles.image} resizeMode="contain"/>
             </View>
             <View style={{alignItems: "center"}}>
             {fontLoaded &&<Text style={styles.loginText}>Register with: </Text>}
             </View>
             <View style={{flexDirection: "row", justifyContent: "space-around", marginBottom: 20}}>
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/GoogleLogo.png")} style={styles.logo}/>
+                <Image source={require("../Bilder/GoogleLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/twitterlogo.png")} style={styles.logo}/>
+                <Image source={require("../Bilder/twitterlogo.png")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/FacebookLogo.png")} style={styles.logo}/>
+                <Image source={require("../Bilder/FacebookLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
             </View>
 

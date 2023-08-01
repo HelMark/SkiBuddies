@@ -11,13 +11,13 @@ const windowWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const images = [ //Dummie values. Replace with const [images, setImages] = useState([]); inside function
-  {user: "TestUser1", likes: "23", saved: "7", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg")},
-  {user: "TestUser2", likes: "3", saved: "1", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde3.jpg")},
-  {user: "TestUser3", likes: "76", saved: "35", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg")},
-  {user: "TestUser4", likes: "123", saved: "96", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde9.jpeg")},
-  {user: "TestUser5", likes: "243", saved: "156", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde15.jpeg")},
-  {user: "TestUser6", likes: "237", saved: "72", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde12.jpeg")},
-  {user: "TestUser7", likes: "6", saved: "6", image: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde7.jpeg")},
+  {user: "TestUser1", likes: "23", saved: "7", image: require("../Bilder/bilde1.jpg")},
+  {user: "TestUser2", likes: "3", saved: "1", image: require("../Bilder/bilde3.jpg")},
+  {user: "TestUser3", likes: "76", saved: "35", image: require("../Bilder/bilde4.jpeg")},
+  {user: "TestUser4", likes: "123", saved: "96", image: require("../Bilder/bilde9.jpeg")},
+  {user: "TestUser5", likes: "243", saved: "156", image: require("../Bilder/bilde15.jpeg")},
+  {user: "TestUser6", likes: "237", saved: "72", image: require("../Bilder/bilde12.jpeg")},
+  {user: "TestUser7", likes: "6", saved: "6", image: require("../Bilder/bilde7.jpeg")},
 ]
 const API_ENDPOINT = ""; //API URL 
 

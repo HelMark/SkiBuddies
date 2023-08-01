@@ -4,7 +4,7 @@ import RegionSelector from '../components/RegionSelector.js';
 import React, { useState, useEffect } from 'react';
 import WeatherArea from '../components/WeatherArea.js';
 import * as Font from 'expo-font';
-import VarsomSVG from "../SVGs/varsom.svg";
+
 
 export default function Weather() {
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -40,8 +40,8 @@ export default function Weather() {
                 <View style={styles.footer}>
                     {fontLoaded &&<Text style={styles.footerText}>Weather data is delivered by: </Text>}
                     <View style={styles.footerImagesContainer}>
-                    <VarsomSVG style={styles.footerImage} />
-                    <Image style={styles.footerImage} source={require ("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/met.institutt.png")}/>
+                    <Image style={styles.footerImage} source={require("../Bilder/varsom.png")} />
+                    <Image style={styles.footerImage} source={require ("../Bilder/met.institutt.png")}/>
                     </View>
                 </View>
                 <Modal visible={selectedRegion !== null} animationType="slide">

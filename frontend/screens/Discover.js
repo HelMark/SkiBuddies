@@ -13,18 +13,18 @@ const API_ENDPOINT = "" //API URL
 
 const DiscoverScreen = () => {
     const [images, setImages] = useState([ //Dummie values. Switch with: const [images, setImages] = useState([]);
-        {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg")},
-        {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde3.jpg")},
-        {id: 3, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg")},
-        {id: 4, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde5.jpeg")},
-        {id: 5, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde6.jpeg")},
-        {id: 6, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde7.jpeg")},
-        {id: 7, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde8.jpeg")},
-        {id: 8, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde9.jpeg")},
-        {id: 9, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde10.jpeg")},
-        {id: 10, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde11.jpeg")},
-        {id: 11, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde12.jpeg")},
-        {id: 12, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde13.jpeg")},
+        {id: 1, source: require("../Bilder/bilde1.jpg")},
+        {id: 2, source: require("../Bilder/bilde3.jpg")},
+        {id: 3, source: require("../Bilder/bilde4.jpeg")},
+        {id: 4, source: require("../Bilder/bilde5.jpeg")},
+        {id: 5, source: require("../Bilder/bilde6.jpeg")},
+        {id: 6, source: require("../Bilder/bilde7.jpeg")},
+        {id: 7, source: require("../Bilder/bilde8.jpeg")},
+        {id: 8, source: require("../Bilder/bilde9.jpeg")},
+        {id: 9, source: require("../Bilder/bilde10.jpeg")},
+        {id: 10, source: require("../Bilder/bilde11.jpeg")},
+        {id: 11, source: require("../Bilder/bilde12.jpeg")},
+        {id: 12, source: require("../Bilder/bilde13.jpeg")},
     ]);
 
 const handleSwipeUp = () => {

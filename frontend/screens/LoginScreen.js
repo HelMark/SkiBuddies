@@ -37,7 +37,7 @@ const LoginScreen = () => {
         <SafeAreaView style={styles.container}>
             <View style={{paddingHorizontal: 25}}>
             <View style={styles.bodyContainer}>
-            <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/mountain-png.webp")} style={styles.image} resizeMode="contain"/>
+            <Image source={require("../Bilder/mountain-png.webp")} style={styles.image} resizeMode="contain"/>
             </View>
             <View style={{alignItems: "center"}}>
                 {fontLoaded &&<Text style={styles.LogoText}>SKIBUDDIES</Text>}
@@ -57,15 +57,15 @@ const LoginScreen = () => {
 
             <View style={{flexDirection: "row", justifyContent: "space-around", marginBottom: 30,}}>
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/GoogleLogo.png")} style={styles.logo}/>
+                <Image source={require("..//Bilder/GoogleLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/twitterlogo.png")} style={styles.logo}/>
+                <Image source={require("../Bilder/twitterlogo.png")} style={styles.logo}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {}} style={styles.logoContainer}>
-                <Image source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/FacebookLogo.png")} style={styles.logo}/>
+                <Image source={require("../Bilder/FacebookLogo.png")} style={styles.logo}/>
             </TouchableOpacity>
             </View>
 

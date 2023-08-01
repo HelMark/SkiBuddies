@@ -18,9 +18,9 @@ export default function WeatherArea( {onClose, selectedRegion }) {
             </View>
             <ScrollView style={styles.body}>
                 <Text style={styles.bodyTitle}>Weahter reports: </Text>
-                <Image style={styles.image} source={require ("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/Vaerdata.png")} />
+                <Image style={styles.image} source={require ("../Bilder/Vaerdata.png")} />
                 <Text style={styles.bodyTitle}>Avalanche Danger: </Text>
-                <Image style={styles.dangerImage} source={require ("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/fare.png")}/>
+                <Image style={styles.dangerImage} source={require ("../Bilder/fare.png")}/>
                 <Text style={styles.bodyTitle}>Avlanche Reports From User:</Text>
                 <View style={styles.reportsContainer}>
                     <Text style={styles.reportText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 

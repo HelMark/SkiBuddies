@@ -21,15 +21,15 @@ const ProfileScreen = () => {
     const [selectedMenuItem, setSelectedMenuItem] = useState("myPosts");
 
     const [MyImages, setMyImages] = useState([ //Dummie values 
-    {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde1.jpg")},
-    {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde3.jpg")},
-    {id: 3, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg") }
+    {id: 1, source: require("../Bilder/bilde1.jpg")},
+    {id: 2, source: require("../Bilder/bilde3.jpg")},
+    {id: 3, source: require("../Bilder/bilde4.jpeg") }
     ])
 
     const [savedImages, setSavedImages] = useState([ //Dummie values
-    {id: 1, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde5.jpeg")},
-    {id: 2, source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde7.jpeg")},
-    {id: 3 , source: require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde8.jpeg")}
+    {id: 1, source: require("../Bilder/bilde5.jpeg")},
+    {id: 2, source: require("../Bilder/bilde7.jpeg")},
+    {id: 3 , source: require("../Bilder/bilde8.jpeg")}
     ])
 
     const handleMenuPress = (menuItem) => {
@@ -56,7 +56,7 @@ const ProfileScreen = () => {
         <View style={styles.container}>
             <View style={styles.profileHeader}>
                 <Image 
-                source={require("/Users/sigurdhagen/Documents/SkiBuddies/SkiBuddies/frontend/Bilder/bilde4.jpeg")}
+                source={require("../Bilder/bilde4.jpeg")}
                 style={styles.profileImage}/>
                 <View style={styles.BuddiesCountContainer}>
                     {fontLoaded &&<Text style={styles.BuddiesCount}>123</Text>}
