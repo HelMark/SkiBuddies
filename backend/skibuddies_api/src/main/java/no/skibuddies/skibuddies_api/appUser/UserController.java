@@ -1,4 +1,4 @@
-package no.skibuddies.skibuddies_api.users;
+package no.skibuddies.skibuddies_api.appUser;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     
     @Autowired
-    private UserService userService;
+    private AppUserService userService;
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
@@ -32,7 +32,7 @@ public class UserController {
         return new ResponseEntity<Optional<User>>(userService.singleUser(userId), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/{createUser}")
     public ResponseEntity<User> createUser(@RequestBody Map<String, String> payload) {
         return new ResponseEntity<User>(userService.createUser(payload.get("userId"), payload.get("username"), payload.get("email"), payload.get("homeTown"), payload.get("pwd"), payload.get("hobbies"),payload.get("dateOfBirth"), payload.get("isPrivate")), HttpStatus.CREATED);
     }
